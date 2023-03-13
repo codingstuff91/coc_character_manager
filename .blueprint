@@ -1,0 +1,37 @@
+created:
+    - app/Http/Controllers/CharacterController.php
+    - database/factories/CharacterFactory.php
+    - database/factories/ProfileFactory.php
+    - database/factories/AdvantageFactory.php
+    - database/factories/AttributeFactory.php
+    - database/factories/CapacityFactory.php
+    - database/factories/WeaponFactory.php
+    - database/migrations/2023_01_31_212933_create_capacities_table.php
+    - database/migrations/2023_01_31_212934_create_weapons_table.php
+    - database/migrations/2023_01_31_212936_create_character_user_table.php
+    - database/migrations/2023_01_31_212937_create_character_weapon_table.php
+    - database/migrations/2023_01_31_212938_create_capacity_character_table.php
+    - app/Models/Character.php
+    - app/Models/Profile.php
+    - app/Models/Advantage.php
+    - app/Models/Attribute.php
+    - app/Models/Capacity.php
+    - app/Models/Weapon.php
+    - tests/Feature/Http/Controllers/CharacterControllerTest.php
+updated:
+    - database/migrations/2023_01_31_211115_create_characters_table.php
+    - database/migrations/2023_01_31_211116_create_profiles_table.php
+    - database/migrations/2023_01_31_211328_create_advantages_table.php
+    - database/migrations/2023_01_31_211118_create_attributes_table.php
+    - database/migrations/2023_01_31_211119_create_attribute_character_table.php
+    - routes/web.php
+skipped:
+    - resources/views/character/show.blade.php
+models:
+    User: { name: string, email: string, email_verified_at: 'datetime nullable', password: string, remember_token: 'string nullable' }
+    Character: { name: 'string:40', level: integer, gender: string, age: integer, height: integer, user_id: 'id foreign:users', profile_id: 'id foreign:profiles', relationships: { belongsTo: 'Profile, Advantage', belongsToMany: 'Attribute, User, Weapon, Capacity' } }
+    Profile: { name: string, description: text, timestamps: false }
+    Advantage: { name: string, description: text, timestamps: false }
+    Attribute: { name: string, description: text, timestamps: false }
+    Capacity: { name: string, level: integer, description: text }
+    Weapon: { name: string, dm_score: string, attack_score: string, timestamps: false }

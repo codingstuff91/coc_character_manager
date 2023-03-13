@@ -1,0 +1,48 @@
+models:
+  Character:
+    name: string:40
+    level: integer
+    gender: string
+    age: integer
+    height: integer
+    user_id: id foreign:users
+    profile_id: id foreign:profiles
+    relationships:
+      belongsTo: Profile, Advantage
+      belongsToMany: Attribute, User, Weapon, Capacity
+
+  Profile:
+    name: string
+    description: text
+    timestamps : false
+
+  Advantage:
+    name: string
+    description: text
+    timestamps: false
+
+  Attribute:
+    name: string
+    description: text
+    timestamps: false
+
+  Capacity:
+    name: string
+    level: integer
+    description: text
+
+  Weapon:
+    name: string
+    dm_score: string
+    attack_score: string
+    timestamps: false
+
+controllers:
+  Character:
+    index:
+      query: all
+    show:
+      find: character.id
+      render: character.show with:attribute
+
+

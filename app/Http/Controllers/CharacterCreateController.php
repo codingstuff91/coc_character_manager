@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actions\Character\AssignMainAttributesValuesAction;
 use App\Actions\Character\CreateCharacterGeneralInformationsAction;
+use App\Actions\Character\DefineHealthPointsAttributeAction;
 use App\Models\Attribute;
 use App\Models\Family;
 use Illuminate\Http\Request;
@@ -30,6 +31,9 @@ class CharacterCreateController extends Controller
         $assignAttributes = resolve(AssignMainAttributesValuesAction::class)
                             ->execute($newCharacter, $request->character['characterAttributes']);
 
-        return $assignAttributes;
+        $healthPointsAttributes = resolve(DefineHealthPointsAttributeAction::class)
+            ->execute($newCharacter, $request->character['characterAttributes'], $request->character['family']);
+
+        return $healthPointsAttributes;
     }
 }

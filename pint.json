@@ -40,6 +40,12 @@
         "single_quote": {
             "strings_containing_single_quote_chars": true
         },
-        "ordered_imports": true
+        "ordered_imports": true,
+        "binary_operator_spaces": {
+            "operators": {
+                "|": "single_space",
+                "=>": "align_single_space_minimal_by_scope"
+            }
+        }
     }
 }

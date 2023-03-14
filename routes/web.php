@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function() {
         });
 
         Route::prefix('character')->group(function() {
-            Route::get('/associate', [CharacterController::class, 'associate']);
+            Route::get('/associate', [CharacterController::class, 'associate'])->name('character.associate');
             Route::post('/associate/{character}/user/{user}', [CharacterController::class, 'associateToUser']);
             Route::get('/create', [CharacterCreateController::class, 'create'])->name('character.create');
             Route::post('/save', [CharacterCreateController::class, 'store'])->name('character.store');

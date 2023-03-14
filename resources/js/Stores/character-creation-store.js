@@ -84,11 +84,11 @@ export const useCharacterCreationStore = defineStore('character-create',{
             this.family.id = family;
         },
         setLifeDiceScore(family) {
-            let lifeDiceScoreToFind = this.families.find(element => {
+            let familyToFind = this.families.find(element => {
                 return element.id === family;
             });
 
-            this.family.lifeDiceScore = lifeDiceScoreToFind.life_dice_score;
+            this.family.lifeDiceScore = familyToFind.life_dice_score;
         },
         setGender(gender) {
           this.informations.gender = gender;

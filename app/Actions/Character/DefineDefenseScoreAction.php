@@ -19,7 +19,7 @@ class DefineDefenseScoreAction
         AttributeCharacter::create([
             'attribute_id' => AttributeEnum::INITIATIVE,
             'character_id' => $character->id,
-            'value'        => $characterAttributes['dexterity']['value'],
+            'value'        => $characterAttributes['dexterity']['score'],
             'modificator'  => 0,
         ]);
 

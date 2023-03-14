@@ -21,32 +21,32 @@
                 <div class="attribute">
                     <div class="attribute-header">
                         <img src="/img/initiative.png" class="attribute-image">
-                        <p>Initiative</p>
+                        <p>{{ character.attributes[6].name }}</p>
                     </div>
-                    <p>{{ character.attributes[1].pivot.value }}</p>
+                    <p>{{ character.attributes[6].pivot.value }}</p>
                 </div>
                 <div class="attribute">
                     <div class="attribute-header">
                         <img src="/img/contact_attack.png" class="attribute-image">
-                        <p>Att au contact</p>
+                        <p>{{ character.attributes[9].name }}</p>
                     </div>
-                    <p>{{ formatModificator(character.attributes[0].pivot.modificator) }}</p>
+                    <p>{{ formatModificator(character.attributes[1].pivot.modificator) }}</p>
                 </div>
             </div>
             <div class="columns-2 gap-2 flex justify-between">
                 <div class="attribute">
                     <div class="attribute-header">
                         <img src="/img/distant_attack.png" class="attribute-image">
-                        <p>{{ character.attributes[9].name }}</p>
+                        <p>{{ character.attributes[10].name }}</p>
                     </div>
-                    <p>{{ formatModificator(character.attributes[1].pivot.modificator) }}</p>
+                    <p>{{ formatModificator(character.attributes[2].pivot.modificator) }}</p>
                 </div>
                 <div class="attribute">
                     <div class="attribute-header">
                         <img src="/img/magic.png" class="attribute-image">
-                        <p>{{ character.attributes[10].name }}</p>
+                        <p>{{ character.attributes[11].name }}</p>
                     </div>
-                    N/A
+                    <p>{{ formatModificator(character.attributes[3].pivot.modificator) }}</p>
                 </div>
             </div>
             <div class="attribute">
@@ -57,7 +57,7 @@
                 <div class="flex justify-around w-full mt-2">
                     <div class="flex flex-col items-center">
                         <p class="font-bold text-sm">Base</p>
-                        <p>{{ parseInt(10) + parseInt(character.attributes[7].pivot.modificator) }}</p>
+                        <p>{{ parseInt(10) + parseInt(character.attributes[1].pivot.modificator) }}</p>
                     </div>
                     <div class="flex flex-col items-center">
                         <p class="font-bold text-sm">Armure</p>
@@ -65,7 +65,7 @@
                     </div>
                     <div class="flex flex-col items-center">
                         <p class="font-bold text-sm">Total</p>
-                        <p>{{ totalDefense(character.attributes[7].pivot.modificator, character.attributes[8].pivot.modificator) }}</p>
+                        <p>{{ totalDefense(character.attributes[1].pivot.modificator, character.attributes[8].pivot.modificator) }}</p>
                     </div>
                 </div>
             </div>

@@ -11,7 +11,7 @@ use Inertia\Inertia;
 
 class CharacterCreateController extends Controller
 {
-    public function createGeneralInformations()
+    public function create()
     {
         $families = Family::all();
         $attributes = Attribute::all();
@@ -24,8 +24,6 @@ class CharacterCreateController extends Controller
 
     public function store(Request $request)
     {
-//        return $request->character['informations'];
-
         $newCharacter = resolve(CreateCharacterGeneralInformationsAction::class)
                         ->execute($request->character['informations']);
 

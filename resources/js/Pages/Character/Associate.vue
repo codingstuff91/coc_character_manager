@@ -1,9 +1,8 @@
-
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, router } from '@inertiajs/vue3';
 import InputLabel from "@/Components/InputLabel.vue";
-import {reactive} from "vue";
+import { reactive } from "vue";
 import SecondaryButton from "@/Components/SecondaryButton.vue";
 
 defineProps({
@@ -16,8 +15,8 @@ const form = reactive({
     userId: null,
 });
 
-function submitForm () {
-    router.post('/character/associate/1/user/1', form);
+async function submitForm () {
+    await router.post(`/character/associate/${form.characterId}/user/${form.userId}`, form);
 }
 </script>
 
@@ -36,15 +35,15 @@ function submitForm () {
                 @submit.prevent="submitForm"
             >
                 <InputLabel class="mt-4" value="Personnage"/>
-                <select v-model="characterId" class="rounded-lg">
-                    <option v-for="character in characters" :key="character.name">
+                <select v-model="form.characterId" class="rounded-lg">
+                    <option v-for="character in characters" :key="character.name" :value="character.id">
                         {{ character.name }}
                     </option>
                 </select>
 
                 <InputLabel class="mt-4" value="Joueur"/>
-                <select v-model="userId" class="rounded-lg">
-                    <option v-for="user in users" :key="user.name">
+                <select v-model="form.userId" class="rounded-lg">
+                    <option v-for="user in users" :key="user.name" :value="user.id">
                         {{ user.name }}
                     </option>
                 </select>

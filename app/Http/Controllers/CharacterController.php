@@ -11,7 +11,7 @@ use Inertia\Inertia;
 class CharacterController extends Controller
 {
     /**
-     * @param \Illuminate\Http\Request $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -25,8 +25,8 @@ class CharacterController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Models\Character $character
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Character  $character
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, Character $character)
@@ -39,7 +39,7 @@ class CharacterController extends Controller
         ])->where('id', $character->id)->get()->first();
 
         $capacities = $character->capacities()
-            -> orderBy('level')
+            ->orderBy('level')
             ->get()
             ->groupBy('name');
 

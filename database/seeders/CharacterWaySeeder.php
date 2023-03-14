@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use App\Models\Capacity;
 use App\Models\CharacterWay;
+use Faker\Generator;
 use Illuminate\Container\Container;
 use Illuminate\Database\Seeder;
-use Faker\Generator;
 
 class CharacterWaySeeder extends Seeder
 {
@@ -33,14 +33,14 @@ class CharacterWaySeeder extends Seeder
     }
 
     protected $characterWays = [
-        "Voie de l'espionnage",
-        "Voie du danger",
-        "Voie des langues",
-        "Voie des corporations",
-        "Voie de l'investigation",
-        "Voie de l'art",
-        "Voie des armes à feu",
-        "Voie de l'argent"
+        'Voie de l\'espionnage',
+        'Voie du danger',
+        'Voie des langues',
+        'Voie des corporations',
+        'Voie de l\'investigation',
+        'Voie de l\'art',
+        'Voie des armes à feu',
+        'Voie de l\'argent'
     ];
 
     /**
@@ -53,15 +53,14 @@ class CharacterWaySeeder extends Seeder
         foreach ($this->characterWays as $way) {
             CharacterWay::factory(10)->create([
                 'name' => $way,
-            ])->each(function($characterWay){
-                for($i = 1; $i < 6; $i++) {
+            ])->each(function($characterWay) {
+                for ($i = 1; $i < 6; $i++) {
                     Capacity::factory()->for($characterWay)->create([
-                        "level" => $i,
-                        "description" => $this->faker->paragraph(2),
+                        'level'       => $i,
+                        'description' => $this->faker->paragraph(2),
                     ]);
                 }
             });
         }
-
     }
 }

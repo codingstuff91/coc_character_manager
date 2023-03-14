@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,7 +12,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('character_way_profile', function (Blueprint $table) {
+        Schema::create('character_way_profile', function(Blueprint $table) {
             $table->id();
             $table->integer('character_way_id');
             $table->integer('profile_id');

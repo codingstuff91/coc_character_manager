@@ -15,7 +15,7 @@ class CreateWeaponsTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('weapons', function (Blueprint $table) {
+        Schema::create('weapons', function(Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('dm_score');

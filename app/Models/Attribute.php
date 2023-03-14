@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attribute extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
     protected $fillable = [
         'name',
@@ -19,6 +20,6 @@ class Attribute extends Model
 
     public function character()
     {
-        return $this->belongsToMany(Character::class)->using(AttributeCharacter::class);;
+        return $this->belongsToMany(Character::class)->using(AttributeCharacter::class);
     }
 }

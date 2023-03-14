@@ -43,8 +43,8 @@ class WeaponController extends Controller
     public function store(Request $request)
     {
         Weapon::create([
-            'name' => $request->name,
-            'dm_score' => $request->dm_score,
+            'name'         => $request->name,
+            'dm_score'     => $request->dm_score,
             'attack_score' => $request->attack_score,
         ]);
 
@@ -74,8 +74,8 @@ class WeaponController extends Controller
     public function update(Request $request, Weapon $weapon)
     {
         $weapon->update([
-            'name' => $request->name,
-            'dm_score' => $request->dm_score,
+            'name'         => $request->name,
+            'dm_score'     => $request->dm_score,
             'attack_score' => $request->attack_score,
         ]);
 

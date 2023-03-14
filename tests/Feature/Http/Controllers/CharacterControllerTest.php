@@ -23,7 +23,6 @@ class CharacterControllerTest extends TestCase
         $response = $this->get(route('character.index'));
     }
 
-
     /**
      * @test
      */

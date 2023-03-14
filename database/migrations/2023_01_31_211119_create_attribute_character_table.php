@@ -15,7 +15,7 @@ class CreateAttributeCharacterTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('attribute_character', function (Blueprint $table) {
+        Schema::create('attribute_character', function(Blueprint $table) {
             $table->foreignId('attribute_id');
             $table->foreignId('character_id');
             $table->integer('value');

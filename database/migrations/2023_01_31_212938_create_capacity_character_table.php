@@ -15,7 +15,7 @@ class CreateCapacityCharacterTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('capacity_character', function (Blueprint $table) {
+        Schema::create('capacity_character', function(Blueprint $table) {
             $table->foreignId('capacity_id');
             $table->foreignId('character_id');
         });

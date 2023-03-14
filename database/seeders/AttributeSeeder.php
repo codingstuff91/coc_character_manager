@@ -39,7 +39,7 @@ class AttributeSeeder extends Seeder
 
         foreach ($attributes as $attribute) {
             Attribute::create([
-                'name' => $attribute,
+                'name'        => $attribute,
                 'description' => '',
             ]);
         }

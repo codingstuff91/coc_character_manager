@@ -10,9 +10,7 @@ class CharacterWay extends Model
     use HasFactory;
 
     public $timestamps = false;
-
-    protected $table = "character_ways";
-
+    protected $table = 'character_ways';
     protected $fillable = ['name'];
 
     public function profiles()

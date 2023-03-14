@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Advantage;
 use App\Models\Attribute;
 use App\Models\Capacity;
 use App\Models\Character;
-use App\Models\Profile;
 use App\Models\User;
 use App\Models\Weapon;
 use Illuminate\Database\Seeder;
@@ -22,11 +20,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // User creation
-         $user = User::factory()->create([
-             'name'  => 'mattou',
-             'email' => 'mattou2812@gmail.com',
-             'admin' => true,
-         ]);
+        $user = User::factory()->create([
+            'name'  => 'mattou',
+            'email' => 'mattou2812@gmail.com',
+            'admin' => true,
+        ]);
 
         $this->call(FamilySeeder::class);
         $this->call(CharacterWaySeeder::class);

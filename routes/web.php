@@ -14,24 +14,24 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
+Route::get('/', function() {
     return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
+        'canLogin'       => Route::has('login'),
+        'canRegister'    => Route::has('register'),
         'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
+        'phpVersion'     => PHP_VERSION,
     ]);
 });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function() {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('characters', App\Http\Controllers\CharacterController::class)->only('index', 'show');
 
-    Route::middleware('admin')->group(function(){
-        Route::prefix('admin')->group(function(){
+    Route::middleware('admin')->group(function() {
+        Route::prefix('admin')->group(function() {
             Route::get('/', [AdminController::class, 'index'])->name('admin.index');
             Route::resource('/attributes', AttributeController::class);
             Route::resource('/capacities', CapacityController::class);
@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
             Route::resource('/character_ways', CharacterWayController::class);
         });
 
-        Route::prefix('character')->group(function(){
+        Route::prefix('character')->group(function() {
             Route::get('/associate', [CharacterController::class, 'associate']);
             Route::post('/associate/{character}/user/{user}', [CharacterController::class, 'associateToUser']);
             Route::get('/create', [CharacterCreateController::class, 'create'])->name('character.create');
@@ -55,6 +55,3 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-
-

@@ -10,8 +10,7 @@ class Family extends Model
     use HasFactory;
 
     public $timestamps = false;
-
-    protected $table = "families";
+    protected $table = 'families';
 
     public function profiles()
     {

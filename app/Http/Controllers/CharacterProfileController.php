@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attribute;
 use App\Models\Family;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -33,7 +32,7 @@ class CharacterProfileController extends Controller
 
     public function getCharacterWays(Profile $profile)
     {
-        return $profile->characterWays->each(function($query){
+        return $profile->characterWays->each(function($query) {
             return $query->capacities;
         });
     }
@@ -57,7 +56,7 @@ class CharacterProfileController extends Controller
     public function store(Request $request)
     {
         Profile::create([
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ]);
 
@@ -87,7 +86,7 @@ class CharacterProfileController extends Controller
     public function update(Request $request, Profile $profile)
     {
         $profile->update([
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ]);
 

@@ -3,9 +3,9 @@
 namespace Database\Factories;
 
 use App\Models\Advantage;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Character;
 use App\Models\Profile;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class CharacterFactory extends Factory
 {
@@ -26,12 +26,12 @@ class CharacterFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'level' => $this->faker->numberBetween(1, 5),
-            'gender' => $this->faker->randomElement($this->genders),
-            'age' => $this->faker->numberBetween(20, 50),
-            'height' => $this->faker->numberBetween(150, 200),
-            'profile_id' => Profile::inRandomOrder()->first()->id,
+            'name'         => $this->faker->name,
+            'level'        => $this->faker->numberBetween(1, 5),
+            'gender'       => $this->faker->randomElement($this->genders),
+            'age'          => $this->faker->numberBetween(20, 50),
+            'height'       => $this->faker->numberBetween(150, 200),
+            'profile_id'   => Profile::inRandomOrder()->first()->id,
             'advantage_id' => Advantage::inRandomOrder()->first()->id,
         ];
     }

@@ -15,7 +15,7 @@ class CreateAttributesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('attributes', function (Blueprint $table) {
+        Schema::create('attributes', function(Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();

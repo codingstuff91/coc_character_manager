@@ -15,7 +15,7 @@ class CreateCharacterUserTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('character_user', function (Blueprint $table) {
+        Schema::create('character_user', function(Blueprint $table) {
             $table->foreignId('character_id');
             $table->foreignId('user_id');
         });

@@ -15,7 +15,7 @@ class CreateCharactersTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('characters', function (Blueprint $table) {
+        Schema::create('characters', function(Blueprint $table) {
             $table->id();
             $table->string('name', 40);
             $table->integer('level');

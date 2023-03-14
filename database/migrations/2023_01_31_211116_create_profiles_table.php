@@ -15,7 +15,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('profiles', function(Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->integer('family_id');

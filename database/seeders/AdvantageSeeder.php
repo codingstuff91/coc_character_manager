@@ -19,6 +19,6 @@ class AdvantageSeeder extends Seeder
         Advantage::factory(5)->for(Family::first())->create();
 
         // Advantages creation for reflexion profile (The last and third one)
-        Advantage::factory(5)-> for(Family::find(3))->create();
+        Advantage::factory(5)->for(Family::find(3))->create();
     }
 }

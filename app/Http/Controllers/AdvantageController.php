@@ -49,7 +49,7 @@ class AdvantageController extends Controller
     public function store(Request $request)
     {
         Advantage::create([
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ]);
 
@@ -79,7 +79,7 @@ class AdvantageController extends Controller
     public function update(Request $request, Advantage $advantage)
     {
         $advantage->update([
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ]);
 

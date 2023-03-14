@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use App\Models\Advantage;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class AdvantageFactory extends Factory
 {
@@ -23,7 +22,7 @@ class AdvantageFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word,
+            'name'        => $this->faker->word,
             'description' => $this->faker->text,
         ];
     }

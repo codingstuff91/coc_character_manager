@@ -13,8 +13,8 @@ class AssignMainAttributesValuesAction
             AttributeCharacter::create([
                 'attribute_id' => $attribute['id'],
                 'character_id' => $character->id,
-                'value' => $attribute['score'],
-                'modificator' => $attribute['modificator'],
+                'value'        => $attribute['score'],
+                'modificator'  => $attribute['modificator'],
             ]);
         }
     }

@@ -43,7 +43,7 @@ class AttributeController extends Controller
     public function store(Request $request)
     {
         Attribute::create([
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ]);
 
@@ -73,7 +73,7 @@ class AttributeController extends Controller
     public function update(Request $request, Attribute $attribute)
     {
         $attribute->update([
-            'name' => $request->name,
+            'name'        => $request->name,
             'description' => $request->description,
         ]);
 

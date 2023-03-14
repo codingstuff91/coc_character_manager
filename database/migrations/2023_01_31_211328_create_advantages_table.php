@@ -15,7 +15,7 @@ class CreateAdvantagesTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('advantages', function (Blueprint $table) {
+        Schema::create('advantages', function(Blueprint $table) {
             $table->id();
             $table->integer('family_id');
             $table->string('name');

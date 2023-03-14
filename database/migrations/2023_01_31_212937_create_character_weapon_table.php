@@ -15,7 +15,7 @@ class CreateCharacterWeaponTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('character_weapon', function (Blueprint $table) {
+        Schema::create('character_weapon', function(Blueprint $table) {
             $table->foreignId('character_id');
             $table->foreignId('weapon_id');
         });

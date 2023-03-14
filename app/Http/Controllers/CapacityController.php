@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attribute;
 use App\Models\Capacity;
 use App\Models\CharacterWay;
 use Illuminate\Http\Request;
@@ -19,7 +18,7 @@ class CapacityController extends Controller
     {
         $capacities = Capacity::query()
             ->with('characterWay')
-            ->orderBy('name','asc')
+            ->orderBy('name', 'asc')
             ->get();
 
         return Inertia::render('Admin/Capacity/Index', [
@@ -50,9 +49,9 @@ class CapacityController extends Controller
     public function store(Request $request)
     {
         Capacity::create([
-            'name' => $request->name,
-            'level' => $request->level,
-            'description' => $request->description,
+            'name'             => $request->name,
+            'level'            => $request->level,
+            'description'      => $request->description,
             'character_way_id' => $request->characterWay,
         ]);
 

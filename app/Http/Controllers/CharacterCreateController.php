@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\Character\AssignMainAttributesValuesAction;
 use App\Actions\Character\CreateCharacterGeneralInformationsAction;
 use App\Actions\Character\DefineAttackScoresAction;
+use App\Actions\Character\DefineDefenseScoreAction;
 use App\Actions\Character\DefineHealthPointsAttributeAction;
 use App\Actions\Character\DefineLuckPointsAttributeAction;
 use App\Models\Attribute;
@@ -31,6 +32,9 @@ class CharacterCreateController extends Controller
                         ->execute($request->character['informations']);
 
         resolve(AssignMainAttributesValuesAction::class)
+            ->execute($newCharacter, $request->character['characterAttributes']);
+
+        resolve(DefineDefenseScoreAction::class)
             ->execute($newCharacter, $request->character['characterAttributes']);
 
         resolve(DefineAttackScoresAction::class)

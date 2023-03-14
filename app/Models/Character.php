@@ -49,7 +49,9 @@ class Character extends Model
 
     public function attributes()
     {
-        return $this->belongsToMany(Attribute::class)->using(AttributeCharacter::class);
+        return $this->belongsToMany(Attribute::class)
+                    ->withPivot('value', 'modificator')
+                    ->using(AttributeCharacter::class);
     }
 
     public function users()

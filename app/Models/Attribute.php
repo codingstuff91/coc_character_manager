@@ -20,6 +20,8 @@ class Attribute extends Model
 
     public function character()
     {
-        return $this->belongsToMany(Character::class)->using(AttributeCharacter::class);
+        return $this->belongsToMany(Character::class)
+                    ->withPivot('value', 'modificator')
+                    ->using(AttributeCharacter::class);
     }
 }

@@ -22,6 +22,7 @@ Pour utiliser le projet en local il faut réaliser les taches suivantes :
 - Mettre le chemin absolu du fichier database.sqlite dans le fichier  .env dans la clé "DB_DATABASE"
 - Executer la commande artisan : ``php artisan migrate:fresh --seed``
 - Exécuter la commande : `npm run dev`
+- Exécuter la commande : `php artisan serve`
 
 
 

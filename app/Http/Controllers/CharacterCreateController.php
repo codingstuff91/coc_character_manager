@@ -45,5 +45,7 @@ class CharacterCreateController extends Controller
 
         resolve(DefineLuckPointsAttributeAction::class)
             ->execute($newCharacter, $request->character['characterAttributes'], $request->character['family']);
+
+        return to_route('character.associate');
     }
 }

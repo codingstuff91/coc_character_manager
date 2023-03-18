@@ -30,7 +30,7 @@
                         <img src="/img/contact_attack.png" class="attribute-image">
                         <p>{{ character.attributes[9].name }}</p>
                     </div>
-                    <p>{{ formatModificator(character.attributes[1].pivot.modificator) }}</p>
+                    <p>{{ formatModificator(character.attributes[9].pivot.value) }}</p>
                 </div>
             </div>
             <div class="columns-2 gap-2 flex justify-between">
@@ -39,14 +39,14 @@
                         <img src="/img/distant_attack.png" class="attribute-image">
                         <p>{{ character.attributes[10].name }}</p>
                     </div>
-                    <p>{{ formatModificator(character.attributes[2].pivot.modificator) }}</p>
+                    <p>{{ formatModificator(character.attributes[10].pivot.value) }}</p>
                 </div>
                 <div class="attribute">
                     <div class="attribute-header">
                         <img src="/img/magic.png" class="attribute-image">
                         <p>{{ character.attributes[11].name }}</p>
                     </div>
-                    <p>{{ formatModificator(character.attributes[3].pivot.modificator) }}</p>
+                    <p>{{ formatModificator(character.attributes[11].pivot.value) }}</p>
                 </div>
             </div>
             <div class="attribute">

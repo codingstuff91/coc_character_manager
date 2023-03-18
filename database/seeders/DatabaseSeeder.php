@@ -32,9 +32,6 @@ class DatabaseSeeder extends Seeder
         $this->call(AttributeSeeder::class);
         $this->call(AdvantageSeeder::class);
 
-        // Capacities creation
-//        Capacity::factory(10)->create();
-
         // Weapons creation
         $weapon = Weapon::factory(5)->create();
 
@@ -52,8 +49,8 @@ class DatabaseSeeder extends Seeder
             DB::table('attribute_character')->insert([
                 'attribute_id' => $attribute->id,
                 'character_id' => $character->id,
-                'value'        => fake()->numberBetween('1', '18'),
-                'modificator'  => fake()->numberBetween('-4', '4'),
+                'value'        => fake()->numberBetween('1', '20'),
+                'modificator'  => fake()->numberBetween('-5', '5'),
             ]);
         }
 

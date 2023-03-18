@@ -11,7 +11,7 @@ const store = useCharacterCreationStore();
 let levelsChosen = ref([]);
 
 watch(() => levelsChosen.value, (levelsChosen) => {
-    store.setCapacities(levelsChosen.value)
+    store.setCapacities(levelsChosen)
 });
 </script>
 

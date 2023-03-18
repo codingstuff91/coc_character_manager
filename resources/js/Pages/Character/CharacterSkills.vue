@@ -3,64 +3,18 @@
         <div class="card">
             <h1 class="card-header">Caractéristiques</h1>
             <h2 class="px-2 text-xl">(Valeur / Modificateur)</h2>
-            <div class="columns-2 gap-2 flex justify-between mt-4">
-                <div class="attribute">
+            <div class="grid grid-cols-2 gap-2 mx-2">
+                <div class="attribute" v-for="attribute in mainAttributes" :key="attribute.id">
                     <div class="attribute-header">
-                        <img class="attribute-image" src="/img/strength.png">
-                        <p>{{ character.attributes[0].name }}</p>
+                        <img class="attribute-image" :src="getImageFullPathName(attribute.image)">
+                        <p>{{ attribute.name }}</p>
                     </div>
-                    <p class="mt-2">{{ character.attributes[0].pivot.value }} / {{ formatModificator(character.attributes[0].pivot.modificator) }}</p>
-                </div>
-                <div class="attribute">
-                    <div class="attribute-header">
-                        <img class="attribute-image" src="/img/dexterity.png">
-                        <p>{{ character.attributes[1].name }}</p>
-                    </div>
-                    <p>{{ character.attributes[1].pivot.value }} / {{ formatModificator(character.attributes[1].pivot.modificator) }}</p>
+                    <p class="mt-2">{{ attribute.pivot.value }} / {{ formatModificator(attribute.pivot.modificator) }}</p>
                 </div>
             </div>
-            <div class="columns-2 gap-2 flex justify-between">
-                <div class="attribute">
-                    <div class="attribute-header">
-                        <img class="attribute-image" src="/img/constitution.png" alt="">
-                        <p>{{ character.attributes[2].name }}</p>
-                    </div>
-
-                    <p>{{ character.attributes[2].pivot.value }} / {{ formatModificator(character.attributes[2].pivot.modificator) }}</p>
-                </div>
-                <div class="attribute">
-                    <div class="attribute-header">
-                        <img class="attribute-image" src="/img/perception.png">
-                        <p>{{ character.attributes[3].name }}</p>
-                    </div>
-
-                    <p>{{ character.attributes[3].pivot.value }} / {{ formatModificator(character.attributes[3].pivot.modificator) }}</p>
-                </div>
-            </div>
-            <div class="columns-2 gap-2 flex justify-between">
-                <div class="attribute">
-                    <div class="attribute-header">
-                        <img class="attribute-image" src="/img/charisma.png">
-                        <p>{{ character.attributes[4].name }}</p>
-                    </div>
-
-                    <p>{{ character.attributes[4].pivot.value }} / {{ formatModificator(character.attributes[4].pivot.modificator) }}</p>
-                </div>
-                <div class="attribute">
-                    <div class="attribute-header">
-                        <img class="attribute-image" src="/img/intelligence.png">
-                        <p>{{ character.attributes[5].name }}</p>
-
-                    </div>
-                    <p>
-                        {{ character.attributes[5].pivot.value }}
-                        / {{ formatModificator(character.attributes[5].pivot.modificator) }}
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <h1 class="card-header">Trait : {{ character.advantage.name }}</h1>
-                <div class="mt-4 p-2 text-justify text-lg bg-gray-200 rounded-md">
+            <div class="attribute">
+                <h1 class="card-header">Trait principal : {{ character.advantage.name }}</h1>
+                <div class="mt-2 p-4 text-justify text-lg bg-gray-200 rounded-md">
                     <p>{{ character.advantage.description }}</p>
                 </div>
             </div>
@@ -69,9 +23,22 @@
 </template>
 
 <script setup>
-defineProps({
+import AttributesConstants from "@/Constants/AttributesConstants";
+import { computed } from "vue";
+
+const images_path = AttributesConstants.IMAGES_PATH;
+
+const props = defineProps({
     character: Object,
-})
+});
+
+const mainAttributes = computed(() => {
+    return props.character.attributes.slice(0, 6);
+});
+
+const getImageFullPathName = (attribute_image) => {
+    return images_path + attribute_image
+}
 const formatModificator = (value) => {
     return value > 0 ? `+${value}` : value;
 }

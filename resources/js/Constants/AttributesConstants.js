@@ -5,6 +5,7 @@ const Attributes = {
     PERCEPTION: 4,
     CHARISMA: 5,
     INTELLIGENCE: 6,
+    IMAGES_PATH: "/img/"
 };
 
 export default Attributes;

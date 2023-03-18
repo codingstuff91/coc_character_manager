@@ -12,7 +12,7 @@ class DefineAttackScoresAction
     {
         $contactAttackScore = $characterAttributes['strength']['modificator'];
         $distantAttackScore = $characterAttributes['dexterity']['modificator'];
-        $magicAttackScore = $characterAttributes['dexterity']['modificator'];
+        $magicAttackScore = $characterAttributes['intelligence']['modificator'];
 
         AttributeCharacter::create([
             'attribute_id' => AttributeEnum::CONTACT_ATTACK,

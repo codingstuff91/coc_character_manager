@@ -3,6 +3,7 @@
 namespace App\Actions\Character;
 
 use App\Enums\AttributeEnum;
+use App\Enums\FamilyEnum;
 use App\Models\AttributeCharacter;
 use App\Models\Character;
 
@@ -11,9 +12,8 @@ class DefineLuckPointsAttributeAction
     public function defineFamilyBonusPoints(array $family)
     {
         return match($family['id']) {
-            1 => 2,
-            2 => 4,
-            3 => 2,
+            FamilyEnum::ADVENTURE => 4,
+            default => 2,
         };
     }
     public function calculateLuckPointsScore(int $modificator, int $familyBonusPoints): int

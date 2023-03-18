@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Character\AssignCapacitiesAction;
 use App\Actions\Character\AssignMainAttributesValuesAction;
 use App\Actions\Character\CreateCharacterGeneralInformationsAction;
 use App\Actions\Character\DefineAttackScoresAction;
@@ -29,7 +30,10 @@ class CharacterCreateController extends Controller
     public function store(Request $request)
     {
         $newCharacter = resolve(CreateCharacterGeneralInformationsAction::class)
-                        ->execute($request->character['informations']);
+                        ->execute($request->character['informations'],
+                            $request->character['profile'],
+                            $request->character['advantage'],
+                            $request->character['family']);
 
         resolve(AssignMainAttributesValuesAction::class)
             ->execute($newCharacter, $request->character['characterAttributes']);
@@ -45,6 +49,9 @@ class CharacterCreateController extends Controller
 
         resolve(DefineLuckPointsAttributeAction::class)
             ->execute($newCharacter, $request->character['characterAttributes'], $request->character['family']);
+
+        resolve(AssignCapacitiesAction::class)
+            ->execute($newCharacter, $request->character['capacities']);
 
         return to_route('character.associate');
     }

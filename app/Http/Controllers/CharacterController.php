@@ -35,7 +35,8 @@ class CharacterController extends Controller
             'attributes',
             'profile',
             'advantage',
-            'weapons'
+            'family',
+            'weapons',
         ])->where('id', $character->id)->get()->first();
 
         $capacities = $character->capacities()

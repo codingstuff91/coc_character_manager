@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Advantage;
 use App\Models\Character;
+use App\Models\Family;
 use App\Models\Profile;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -33,6 +34,7 @@ class CharacterFactory extends Factory
             'height'       => $this->faker->numberBetween(150, 200),
             'profile_id'   => Profile::inRandomOrder()->first()->id,
             'advantage_id' => Advantage::inRandomOrder()->first()->id,
+            'family_id'    => Family::inRandomOrder()->first()->id,
         ];
     }
 }

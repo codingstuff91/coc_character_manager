@@ -24,6 +24,7 @@ class CreateCharactersTable extends Migration
             $table->integer('height');
             $table->foreignId('profile_id')->constrained();
             $table->foreignId('advantage_id')->constrained();
+            $table->foreignId('family_id')->constrained();
             $table->timestamps();
         });
 

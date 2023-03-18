@@ -23,6 +23,7 @@ class Character extends Model
         'user_id',
         'profile_id',
         'advantage_id',
+        'family_id',
     ];
 
     /**
@@ -35,6 +36,7 @@ class Character extends Model
         'user_id'      => 'integer',
         'profile_id'   => 'integer',
         'advantage_id' => 'integer',
+        'family_id'    => 'integer',
     ];
 
     public function profile()
@@ -45,6 +47,11 @@ class Character extends Model
     public function advantage()
     {
         return $this->belongsTo(Advantage::class);
+    }
+
+    public function family()
+    {
+        return $this->belongsTo(Family::class);
     }
 
     public function attributes()

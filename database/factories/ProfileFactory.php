@@ -13,6 +13,7 @@ class ProfileFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
+            'description' => $this->faker->text,
         ];
     }
 }

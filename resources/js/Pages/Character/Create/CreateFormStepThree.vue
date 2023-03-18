@@ -19,9 +19,15 @@ const validateForm = () => {
         errors[key] = null;
     }
 
-    axios.post(route('character.store'), {
-        character: store,
-    })
+    if (store.capacities.length === 0) {
+        errors.capacities = "Veuillez définir les capacités";
+    }
+
+    if(!errors.capacities) {
+        axios.post(route('character.store'), {
+            character: store,
+        });
+    }
 }
 
 </script>

@@ -4,6 +4,7 @@ export const useCharacterCreationStore = defineStore('character-create',{
     state: () => {
         return {
             formStep: 1,
+            formsteps: 3,
             attributes: [],
             families: [],
             family: {
@@ -26,7 +27,10 @@ export const useCharacterCreationStore = defineStore('character-create',{
                 },
             },
             advantages: [],
-            advantage: 0,
+            advantage: {
+                id: 0,
+                name: '',
+            },
             profiles: [],
             profile: {
                 id: 0,
@@ -50,8 +54,8 @@ export const useCharacterCreationStore = defineStore('character-create',{
                     score: 0,
                     modificator: 0,
                 },
-                intelligence: {
-                    id: Attributes.INTELLIGENCE,
+                perception: {
+                    id: Attributes.PERCEPTION,
                     score: 0,
                     modificator: 0,
                 },
@@ -60,8 +64,8 @@ export const useCharacterCreationStore = defineStore('character-create',{
                     score: 0,
                     modificator: 0,
                 },
-                perception: {
-                    id: Attributes.PERCEPTION,
+                intelligence: {
+                    id: Attributes.INTELLIGENCE,
                     score: 0,
                     modificator: 0,
                 },
@@ -76,6 +80,9 @@ export const useCharacterCreationStore = defineStore('character-create',{
         },
         goToPreviousStep() {
           this.formStep--;
+        },
+        setFormStep(step) {
+          this.formStep = step;
         },
         setFamilies(families) {
             this.families = families
@@ -106,7 +113,7 @@ export const useCharacterCreationStore = defineStore('character-create',{
             this.informations.level = level;
         },
         setAdvantage(advantage) {
-            this.informations.advantage.id = advantage;
+            this.advantage.id = advantage;
         },
         setProfile(profile) {
           this.informations.profile.id = profile;

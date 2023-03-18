@@ -17,35 +17,33 @@ const validateForm = () => {
         errors[key] = null;
     }
 
-    // if (store.characterAttributes.strength.score === 0) {
-    //     errors.strength = "Veuillez définir la force";
-    // }
-    //
-    // if (store.characterAttributes.dexterity.score === 0) {
-    //     errors.dexterity = "Veuillez définir la dexterité";
-    // }
-    //
-    // if (store.characterAttributes.constitution.score === 0) {
-    //     errors.constitution = "Veuillez définir la constitution";
-    // }
-    //
-    // if (store.characterAttributes.perception.score === 0) {
-    //     errors.perception = "Veuillez définir la perception";
-    // }
-    //
-    // if (store.characterAttributes.charisma.score === 0) {
-    //     errors.charisma = "Veuillez définir le charisme";
-    // }
-    //
-    // if (store.characterAttributes.intelligence.score === 0) {
-    //     errors.intelligence = "Veuillez définir l'intelligence";
-    // }
-    //
-    // if(!errors.strength && !errors.dexterity && !errors.constitution && !errors.perception && !errors.charisma && !errors.intelligence) {
-    //     store.goToNextStep();
-    // }
+    if (store.characterAttributes.strength.score === 0) {
+        errors.strength = "Veuillez définir la force";
+    }
 
-    store.goToNextStep();
+    if (store.characterAttributes.dexterity.score === 0) {
+        errors.dexterity = "Veuillez définir la dexterité";
+    }
+
+    if (store.characterAttributes.constitution.score === 0) {
+        errors.constitution = "Veuillez définir la constitution";
+    }
+
+    if (store.characterAttributes.perception.score === 0) {
+        errors.perception = "Veuillez définir la perception";
+    }
+
+    if (store.characterAttributes.charisma.score === 0) {
+        errors.charisma = "Veuillez définir le charisme";
+    }
+
+    if (store.characterAttributes.intelligence.score === 0) {
+        errors.intelligence = "Veuillez définir l'intelligence";
+    }
+
+    if(!errors.strength && !errors.dexterity && !errors.constitution && !errors.perception && !errors.charisma && !errors.intelligence) {
+        store.goToNextStep();
+    }
 }
 </script>
 

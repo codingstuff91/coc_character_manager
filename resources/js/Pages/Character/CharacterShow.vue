@@ -20,7 +20,7 @@ defineProps({
         <template #header>
             <div class="flex flex-col">
                 <h2 class="font-bold text-2xl text-gray-800 leading-tight mb-2">{{ character.name }}</h2>
-                <p>Profil : {{ character.profile.name }}</p>
+                <p><span class="font-bold text-lg">Famille :</span> {{ character.family.name }}</p>
             </div>
             <div class="flex flex-col">
                 <h2 class="font-bold text-2xl text-gray-800 leading-tight mb-2">Niveau {{ character.level }}</h2>
@@ -32,7 +32,7 @@ defineProps({
             <CharacterSkills :character="character" />
             <CharacterVitality :character="character" />
             <CharacterCombatSkills :character="character" />
-            <CharacterWeapons :character="character" />
+            <CharacterWeapons :character="character" v-if="character.weapons.length >0" />
             <CharacterCapacities :character="character" :capacities="capacities" />
         </div>
 

@@ -31,9 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProfileSeeder::class);
         $this->call(AttributeSeeder::class);
         $this->call(AdvantageSeeder::class);
-
-        // Weapons creation
-        $weapon = Weapon::factory(5)->create();
+        $this->call(WeaponSeeder::class);
 
         // Character creation
         $character = Character::factory()->create();
@@ -43,7 +41,7 @@ class DatabaseSeeder extends Seeder
          * attributes and capacities
          */
         $character->users()->attach($user);
-        $character->weapons()->attach($weapon);
+        $character->weapons()->attach(Weapon::inRandomOrder()->first()->id);
 
         foreach (Attribute::all() as $attribute) {
             DB::table('attribute_character')->insert([

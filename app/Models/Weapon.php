@@ -23,8 +23,9 @@ class Weapon extends Model
      */
     protected $fillable = [
         'name',
-        'dm_score',
-        'attack_score',
+        'category',
+        'damage_score',
+        'range',
     ];
 
     /**
@@ -34,5 +35,8 @@ class Weapon extends Model
      */
     protected $casts = [
         'id' => 'integer',
+        'name' => 'string',
+        'category' => 'string',
+        'range' => 'integer',
     ];
 }

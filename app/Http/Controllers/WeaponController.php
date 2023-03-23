@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Character;
 use App\Models\Weapon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -44,8 +45,9 @@ class WeaponController extends Controller
     {
         Weapon::create([
             'name'         => $request->name,
-            'dm_score'     => $request->dm_score,
-            'attack_score' => $request->attack_score,
+            'category'     => $request->category,
+            'damage_score' => $request->damage_score,
+            'range'        => $request->range,
         ]);
 
         return to_route('weapons.index');
@@ -75,11 +77,35 @@ class WeaponController extends Controller
     {
         $weapon->update([
             'name'         => $request->name,
-            'dm_score'     => $request->dm_score,
-            'attack_score' => $request->attack_score,
+            'category'     => $request->category,
+            'damage_score' => $request->damage_score,
+            'range'        => $request->range,
         ]);
 
         return to_route('weapons.index');
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Models\Weapon  $weapon
+     * @return \Illuminate\Http\Response
+     */
+    public function choose(Weapon $weapon)
+    {
+        $characters = Character::select('id', 'name')->get();
+
+        return Inertia::render('Admin/Weapon/Give', [
+            'weapon' => $weapon,
+            'characters' => $characters,
+        ]);
+    }
+
+    public function give(Weapon $weapon, Character $character)
+    {
+        $character->weapons()->attach($weapon);
+
+        return to_route('admin.index');
     }
 
     /**

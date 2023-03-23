@@ -10,23 +10,21 @@ import SelectList from "@/Components/Select.vue";
 
 const props = defineProps({
     weapon: Object,
+    characters: Array,
 });
 
 const form = useForm({
-    name: props.weapon.name,
-    category: props.weapon.category,
-    damage_score: props.weapon.damage_score,
-    range: props.weapon.range,
+    characterId: null
 });
 
 function submitForm () {
-    router.put(`/admin/weapons/${props.weapon.id}`, form);
+    router.post(`/admin/weapons/${props.weapon.id}/give/${form.characterId}`);
 }
 </script>
 
 
 <template>
-    <Head title="Edition - Armes" />
+    <Head title="Attribution arme" />
 
     <AuthenticatedLayout>
         <template #header>
@@ -38,29 +36,10 @@ function submitForm () {
                 class="w-full flex flex-col"
                 @submit.prevent="submitForm"
             >
-                <InputLabel class="mt-4" value="Nom"/>
-                <TextInput
-                    class="px-4 py-2"
-                    v-model="form.name"
-                />
-
-                <InputLabel class="mt-4" value="Catégorie"/>
-                <SelectList
-                    :values="['contact', 'distance']"
-                    v-model="form.category"
-                />
-
-                <InputLabel class="mt-4" value="Jet dégats"/>
-                <TextInput
-                    class="px-4 py-2"
-                    v-model="form.damage_score"
-                />
-
-                <InputLabel class="mt-4" value="Portée"/>
-                <TextInput
-                    class="px-4 py-2"
-                    v-model="form.range"
-                />
+                <InputLabel class="mt-4" value="Personnage"/>
+                <select v-model="form.characterId">
+                    <option v-for="character in props.characters" :value="character.id">{{ character.name }}</option>
+                </select>
 
                 <SecondaryButton type="submit" class="mt-4 px-4 py-2 bg-green-300 text-center">
                     Confirmer

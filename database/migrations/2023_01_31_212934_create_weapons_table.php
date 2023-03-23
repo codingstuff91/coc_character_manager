@@ -18,8 +18,9 @@ class CreateWeaponsTable extends Migration
         Schema::create('weapons', function(Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('dm_score');
-            $table->string('attack_score');
+            $table->string('damage_score');
+            $table->string('category');
+            $table->integer('range');
         });
 
         Schema::enableForeignKeyConstraints();

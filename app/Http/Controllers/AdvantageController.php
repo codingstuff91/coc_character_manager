@@ -37,7 +37,11 @@ class AdvantageController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Advantage/Create');
+        $families = Family::all();
+
+        return Inertia::render('Admin/Advantage/Create', [
+            'families' => $families,
+        ]);
     }
 
     /**
@@ -50,6 +54,7 @@ class AdvantageController extends Controller
     {
         Advantage::create([
             'name'        => $request->name,
+            'family_id'   => $request->family_id,
             'description' => $request->description,
         ]);
 

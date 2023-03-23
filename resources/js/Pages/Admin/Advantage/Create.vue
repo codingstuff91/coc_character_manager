@@ -9,7 +9,12 @@ import TextInput from "@/Components/TextInput.vue";
 
 const form = reactive({
     name: null,
-    description: null
+    description: null,
+    family_id: null,
+});
+
+const props = defineProps({
+    families: Array,
 });
 
 function submitForm () {
@@ -31,6 +36,11 @@ function submitForm () {
                 class="w-full flex flex-col"
                 @submit.prevent="submitForm"
             >
+                <InputLabel class="mt-4" value="Famille"/>
+                <select v-model="form.family_id">
+                    <option  v-for="family in props.families" :key="family.id" :value="family.id">{{ family.name }}</option>
+                </select>
+
                 <InputLabel class="mt-4" value="Nom"/>
                 <TextInput
                     class="px-4 py-2"

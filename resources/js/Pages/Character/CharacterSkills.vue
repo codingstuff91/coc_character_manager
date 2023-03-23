@@ -3,7 +3,7 @@
         <div class="card">
             <h1 class="card-header">Caractéristiques</h1>
             <h2 class="px-2 text-xl">(Valeur / Modificateur)</h2>
-            <div class="grid grid-cols-2 gap-2 mx-2">
+            <div class="grid grid-cols-2 gap-2 mx-2 sm:grid-cols-3 lg:grid-cols-6">
                 <div class="attribute" v-for="attribute in mainAttributes" :key="attribute.id">
                     <div class="attribute-header">
                         <img class="attribute-image" :src="getImageFullPathName(attribute.image)">

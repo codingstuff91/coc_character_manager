@@ -1,5 +1,5 @@
 <script setup>
-    defineProps({
+    const props = defineProps({
         character: Object,
     })
 
@@ -17,7 +17,7 @@
     <div class="mx-auto mt-4">
         <div class="card">
             <h1 class="card-header">Combat</h1>
-            <div class="columns-2 gap-2 flex justify-between mt-4">
+            <div class="grid grid-cols-2 gap-2 flex justify-between mt-4 mx-2 sm:grid-cols-4">
                 <div class="attribute">
                     <div class="attribute-header">
                         <img src="/img/initiative.png" class="attribute-image">
@@ -32,8 +32,6 @@
                     </div>
                     <p>{{ formatModificator(character.attributes[9].pivot.value) }}</p>
                 </div>
-            </div>
-            <div class="columns-2 gap-2 flex justify-between">
                 <div class="attribute">
                     <div class="attribute-header">
                         <img src="/img/distant_attack.png" class="attribute-image">

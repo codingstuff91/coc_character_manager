@@ -6,11 +6,13 @@ import { router } from '@inertiajs/vue3';
 import { reactive } from "vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
+import SelectList from "@/Components/Select.vue";
 
 const form = reactive({
     name: null,
-    dm_score: null,
-    attack_score: null,
+    category: null,
+    damage_score: null,
+    range: 0,
 });
 
 function submitForm () {
@@ -20,14 +22,14 @@ function submitForm () {
 
 
 <template>
-    <Head title="Attributs" />
+    <Head title="Armes" />
 
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Création nouvelle arme</h2>
         </template>
 
-        <div class="p-6 mx-auto">
+        <div class="p-6 mx-auto max-w-[450px]">
             <form
                 class="w-full flex flex-col"
                 @submit.prevent="submitForm"
@@ -38,17 +40,24 @@ function submitForm () {
                     v-model="form.name"
                 />
 
+                <InputLabel class="mt-4" value="Catégorie"/>
+                <SelectList
+                    :values="['contact', 'distance']"
+                    v-model="form.category"
+                />
+
                 <InputLabel class="mt-4" value="Jet dégats"/>
                 <TextInput
                     class="px-4 py-2"
-                    v-model="form.dm_score"
+                    v-model="form.damage_score"
                 />
 
-                <InputLabel class="mt-4" value="Score attaque"/>
+                <InputLabel class="mt-4" value="Portée"/>
                 <TextInput
                     class="px-4 py-2"
-                    v-model="form.attack_score"
+                    v-model="form.range"
                 />
+
                 <button
                     type="submit"
                     class="mt-4 px-4 py-2 rounded-lg bg-green-300"

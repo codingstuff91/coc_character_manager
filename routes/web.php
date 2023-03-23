@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function() {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('characters', App\Http\Controllers\CharacterController::class)->only('index', 'show');
+    Route::patch('character/{character}/attribute/{attribute}', [CharacterController::class, 'update_attribute'])->name('character.update_attribute');
 
     Route::middleware('admin')->group(function() {
         Route::prefix('admin')->group(function() {
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function() {
             Route::resource('/advantages', AdvantageController::class);
             Route::resource('/profiles', CharacterProfileController::class);
             Route::resource('/weapons', WeaponController::class);
+            Route::get('weapons/{weapon}/choose', [WeaponController::class, 'choose']);
+            Route::post('weapons/{weapon}/give/{character}', [WeaponController::class, 'give']);
             Route::resource('/character_ways', CharacterWayController::class);
         });
 

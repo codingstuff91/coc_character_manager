@@ -1,21 +1,56 @@
 <template>
-    <div class="flex justify-center">
-        <div v-for="(item,index) in max" :key="index">
-<!--            <img-->
-<!--                class="w-10 h-10" :src="icon"-->
-<!--                @click.prevent="confirmValue(item)"-->
-<!--            >-->
-            <i class="mx-2 text-4xl fa-solid fa-clover"></i>
+    <div class="flex justify-center mt-4 flex-wrap">
+        <div v-for="(item, index) in max" :key="index">
+            <template v-if="index <= selectedPoints">
+                <i :class="`mx-2 text-4xl ${icon} ${color}`" @click="setValue(index)"></i>
+            </template>
+            <template v-else>
+                <i :class="`mx-2 text-4xl ${icon} text-gray-400`" @click="setValue(index)"></i>
+            </template>
         </div>
     </div>
 </template>
 
 <script setup>
-defineProps({
+import { onMounted, ref } from "vue";
+
+let remainingPoints = ref(0);
+let selectedPoints = ref(0);
+
+onMounted(() => {
+    setGaugeValue(props.value, props.max);
+});
+
+const props = defineProps({
     value: Number,
     max: Number,
+    attribute: Number,
+    character: Number,
+    icon: String,
+    color: {
+        type: String,
+        default: 'text-gray-400',
+    },
 });
-const confirmValue = (index) => {
-    console.log('confirm click', index);
+const setValue = (index) => {
+    remainingPoints.value = calculateRemainingPoints(index);
+    selectedPoints.value = index;
+
+    let newValue = parseInt(index + 1);
+
+    axios.patch(route('character.update_attribute', [props.character, props.attribute]), {
+        newScore: newValue,
+    }).then((response) => {
+        console.log(response.data);
+    });
+}
+
+const calculateRemainingPoints = (value) => {
+    return parseInt(props.max - value);
+}
+
+const setGaugeValue = (value, max) => {
+    selectedPoints.value = parseInt(value - 1);
+    remainingPoints.value = calculateRemainingPoints(value);
 }
 </script>

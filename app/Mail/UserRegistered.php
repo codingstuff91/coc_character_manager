@@ -31,7 +31,7 @@ class UserRegistered extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'User Registered',
+            subject: 'Bienvenue sur COC_PERSO_MANAGER',
         );
     }
 

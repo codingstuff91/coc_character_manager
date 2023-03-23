@@ -21,6 +21,6 @@ class Admin
             return $next($request);
         }
 
-        abort(403);
+        abort(403, 'Vous n\'avez pas accès à cette partie de l\'application !');
     }
 }

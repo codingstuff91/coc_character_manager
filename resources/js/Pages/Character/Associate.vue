@@ -15,8 +15,8 @@ const form = reactive({
     userId: null,
 });
 
-async function submitForm () {
-    await router.post(`/character/associate/${form.characterId}/user/${form.userId}`, form);
+function submitForm () {
+    router.post(`/character/associate/${form.characterId}/user/${form.userId}`, form);
 }
 </script>
 

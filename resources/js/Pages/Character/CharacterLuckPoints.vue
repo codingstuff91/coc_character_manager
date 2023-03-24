@@ -15,8 +15,8 @@ const props = defineProps({
                 <h1>{{ props.character.attributes[17].name }}</h1>
             </div>
             <Gauge
-                :value="3"
-                :max="5"
+                :value="props.character.attributes[17].pivot.value"
+                :max="props.character.attributes[18].pivot.value"
                 :character="props.character.id"
                 :attribute="attributesConstants.LUCK_POINTS"
                 icon="fa-solid fa-clover"

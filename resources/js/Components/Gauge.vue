@@ -38,11 +38,11 @@ const setValue = (index) => {
 
     let newValue = parseInt(index + 1);
 
-    axios.patch(route('character.update_attribute', [props.character, props.attribute]), {
+    axios.patch(`/character/${props.character}/attribute/${props.attribute}`, {
         newScore: newValue,
     }).then((response) => {
         console.log(response.data);
-    });
+    }).catch(error => console.log(error));
 }
 
 const calculateRemainingPoints = (value) => {

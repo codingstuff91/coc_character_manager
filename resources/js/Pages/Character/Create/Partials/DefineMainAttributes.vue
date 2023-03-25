@@ -2,6 +2,7 @@
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { calculateAttributeModificator } from "@/Composables/calculateAttributeModificator";
+import { getFullImagePath } from "@/Composables/useImagePath";
 import { useCharacterCreationStore } from "@/Stores/character-creation-store";
 const store = useCharacterCreationStore();
 const attributes = store.attributes;
@@ -23,7 +24,7 @@ const setModificator = (attributeScore, attribute) => {
         <h1 class="my-4 text-xl font-bold">Définition des attributs généraux</h1>
         <div class="grid grid-cols-3 gap-4 w-full">
             <div class="attribute">
-                <img :src="attributes[0].image" class="attribute-image">
+                <img :src="getFullImagePath(attributes[0].image)" class="attribute-image">
                 <h2 class="attribute-header">{{ attributes[0].name }}</h2>
 
                 <div class="max-w-[180px] mx-auto grid grid-cols-2 gap-4">
@@ -47,7 +48,7 @@ const setModificator = (attributeScore, attribute) => {
                 <p v-if="errors.strength" class="error-message">{{ errors.strength }}</p>
             </div>
             <div class="attribute">
-                <img :src="attributes[1].image" class="attribute-image">
+                <img :src="getFullImagePath(attributes[1].image)" class="attribute-image">
                 <h2 class="attribute-header">{{ attributes[1].name }}</h2>
                 <p>{{ attributes[1].description }}</p>
 
@@ -72,7 +73,7 @@ const setModificator = (attributeScore, attribute) => {
                 <p v-if="errors.dexterity" class="error-message">{{ errors.dexterity }}</p>
             </div>
             <div class="attribute">
-                <img :src="attributes[2].image" class="attribute-image">
+                <img :src="getFullImagePath(attributes[2].image)" class="attribute-image">
                 <h2 class="attribute-header">{{ attributes[2].name }}</h2>
 
                 <div class="max-w-[180px] mx-auto grid grid-cols-2 gap-4">
@@ -96,7 +97,7 @@ const setModificator = (attributeScore, attribute) => {
                 <p v-if="errors.constitution" class="error-message">{{ errors.constitution }}</p>
             </div>
             <div class="attribute">
-                <img :src="attributes[3].image" class="attribute-image">
+                <img :src="getFullImagePath(attributes[3].image)" class="attribute-image">
                 <h2 class="attribute-header">{{ attributes[3].name }}</h2>
 
                 <div class="max-w-[180px] mx-auto grid grid-cols-2 gap-4">
@@ -120,7 +121,7 @@ const setModificator = (attributeScore, attribute) => {
                 <p v-if="errors.perception" class="error-message">{{ errors.perception }}</p>
             </div>
             <div class="attribute">
-                <img :src="attributes[4].image" class="attribute-image">
+                <img :src="getFullImagePath(attributes[4].image)" class="attribute-image">
                 <h2 class="attribute-header">{{ attributes[4].name }}</h2>
 
                 <div class="max-w-[180px] mx-auto grid grid-cols-2 gap-4">
@@ -144,7 +145,7 @@ const setModificator = (attributeScore, attribute) => {
                 <p v-if="errors.charisma" class="error-message">{{ errors.charisma }}</p>
             </div>
             <div class="attribute">
-                <img :src="attributes[5].image" class="attribute-image">
+                <img :src="getFullImagePath(attributes[5].image)" class="attribute-image">
                 <h2 class="attribute-header">{{ attributes[5].name }}</h2>
 
                 <div class="max-w-[180px] mx-auto grid grid-cols-2 gap-4">

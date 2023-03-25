@@ -101,5 +101,7 @@ class CharacterController extends Controller
             ->update([
                 'value' => $request->newScore,
             ]);
+
+        return response()->json(['message' => 'Mise à jour effectuée']);
     }
 }

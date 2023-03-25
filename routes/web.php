@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function() {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('characters', App\Http\Controllers\CharacterController::class)->only('index', 'show');
-    Route::patch('character/{character}/attribute/{attribute}', [CharacterController::class, 'update_attribute'])->name('character.update_attribute');
+    Route::post('character/{character}/attribute/{attribute}', [CharacterController::class, 'update_attribute'])->name('character.update_attribute');
 
     Route::middleware('admin')->group(function() {
         Route::prefix('admin')->group(function() {

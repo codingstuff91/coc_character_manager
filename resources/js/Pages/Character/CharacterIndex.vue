@@ -18,6 +18,7 @@ defineProps({
 
         <div class="py-6 max-w-2xl mx-auto sm:w-full">
             <Character
+                class="mb-4"
                 v-for="character in characters"
                 :key="character.id"
                 :character="character"

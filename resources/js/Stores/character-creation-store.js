@@ -145,9 +145,6 @@ export const useCharacterCreationStore = defineStore('character-create',{
             axios.get('/profiles/'+ profile +'/character_ways').then(response => {
                 this.characterWays = response.data;
             });
-        },
-        setCapacities(capacities) {
-            this.capacities = capacities;
         }
     }
 })

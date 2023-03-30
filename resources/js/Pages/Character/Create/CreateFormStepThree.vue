@@ -5,12 +5,12 @@ import DefineCapacities from "@/Pages/Character/Create/Partials/DefineCapacities
 import { reactive } from "vue";
 
 const store = useCharacterCreationStore();
-const character = store.informations;
-
-const props = defineProps({
-    families: Array,
-    attributes: Array,
-});
+const informations = store.informations;
+const advantage = store.advantage;
+const family = store.family;
+const skills = store.characterAttributes;
+const capacities = store.capacities;
+const profile = store.profile;
 
 const errors = reactive({});
 
@@ -25,7 +25,12 @@ const validateForm = () => {
 
     if(!errors.capacities) {
         axios.post(route('character.store'), {
-            character: store,
+            informations: informations,
+            advantage: advantage,
+            family: family,
+            skills: skills,
+            profile: profile,
+            capacities: store.capacities,
         });
     }
 }

@@ -1,18 +1,13 @@
 <script setup>
 import { useCharacterCreationStore } from "@/Stores/character-creation-store";
 import InfoMessage from "@/Components/InfoMessage.vue";
-import {ref, watch} from "vue";
 
 const props = defineProps({
     errors: Object,
 });
 
 const store = useCharacterCreationStore();
-let levelsChosen = ref([]);
 
-watch(() => levelsChosen.value, (levelsChosen) => {
-    store.setCapacities(levelsChosen)
-});
 </script>
 
 <template>
@@ -31,7 +26,7 @@ watch(() => levelsChosen.value, (levelsChosen) => {
                 <div class="bg-white p-6 my-4 rounded-xl" v-for="way in store.characterWays" :key="way.name">
                     <h3 class="text-2xl font-bold text-center mb-4">{{ way.name }}</h3>
                     <p class="my-2 text-justify"  v-for="capacity in way.capacities" :key="capacity.id">
-                        <input type="checkbox" v-model="levelsChosen" :value="capacity.id" class="mr-4">
+                        <input type="checkbox" v-model="store.capacities" :value="capacity.id" class="mr-4">
                         <span class="font-bold">Niveau {{ capacity.level }} :</span> {{ capacity.description }}
                     </p>
                 </div>

@@ -30,28 +30,28 @@ class CharacterCreateController extends Controller
     public function store(Request $request)
     {
         $newCharacter = resolve(CreateCharacterGeneralInformationsAction::class)
-                        ->execute($request->character['informations'],
-                            $request->character['profile'],
-                            $request->character['advantage'],
-                            $request->character['family']);
+                        ->execute($request->informations,
+                            $request->profile,
+                            $request->advantage,
+                            $request->family);
 
         resolve(AssignMainAttributesValuesAction::class)
-            ->execute($newCharacter, $request->character['characterAttributes']);
+            ->execute($newCharacter, $request->skills);
 
         resolve(DefineDefenseScoreAction::class)
-            ->execute($newCharacter, $request->character['characterAttributes']);
+            ->execute($newCharacter, $request->skills);
 
         resolve(DefineAttackScoresAction::class)
-            ->execute($newCharacter, $request->character['characterAttributes']);
+            ->execute($newCharacter, $request->skills);
 
         resolve(DefineHealthPointsAttributeAction::class)
-            ->execute($newCharacter, $request->character['characterAttributes'], $request->character['family']);
+            ->execute($newCharacter, $request->skills, $request->family);
 
         resolve(DefineLuckPointsAttributeAction::class)
-            ->execute($newCharacter, $request->character['characterAttributes'], $request->character['family']);
+            ->execute($newCharacter, $request->skills, $request->family);
 
         resolve(AssignCapacitiesAction::class)
-            ->execute($newCharacter, $request->character['capacities']);
+            ->execute($newCharacter, $request->capacities);
 
         return to_route('character.associate');
     }

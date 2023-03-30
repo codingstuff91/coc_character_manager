@@ -7,14 +7,14 @@ use App\Models\Character;
 
 class AssignMainAttributesValuesAction
 {
-    public function execute(Character $character, array $characterAttributes)
+    public function execute(Character $character, $characterSkills)
     {
-        foreach ($characterAttributes as $attribute) {
+        foreach ($characterSkills as $skill) {
             AttributeCharacter::create([
-                'attribute_id' => $attribute['id'],
+                'attribute_id' => $skill['id'],
                 'character_id' => $character->id,
-                'value'        => $attribute['score'],
-                'modificator'  => $attribute['modificator'],
+                'value'        => $skill['score'],
+                'modificator'  => $skill['modificator'],
             ]);
         }
     }

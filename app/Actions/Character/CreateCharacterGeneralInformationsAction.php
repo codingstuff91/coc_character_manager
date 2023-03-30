@@ -6,14 +6,14 @@ use App\Models\Character;
 
 class CreateCharacterGeneralInformationsAction
 {
-    public function execute(array $characterData, array $characterProfile, array $characterAdvantage, array $characterFamily)
+    public function execute(array $characterInformations, array $characterProfile, array $characterAdvantage, array $characterFamily)
     {
         $newCharacter = Character::create([
-            'name'         => $characterData['name'],
-            'gender'       => $characterData['gender'],
-            'level'        => $characterData['level'],
-            'height'       => $characterData['height'],
-            'age'          => $characterData['age'],
+            'name'         => $characterInformations['name'],
+            'gender'       => $characterInformations['gender'],
+            'level'        => $characterInformations['level'],
+            'height'       => $characterInformations['height'],
+            'age'          => $characterInformations['age'],
             'profile_id'   => $characterProfile['id'],
             'advantage_id' => $characterAdvantage['id'],
             'family_id'    => $characterFamily['id']

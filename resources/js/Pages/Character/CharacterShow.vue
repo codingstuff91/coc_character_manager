@@ -7,6 +7,7 @@ import CharacterWeapons from "@/Pages/Character/CharacterWeapons.vue";
 import CharacterCapacities from "@/Pages/Character/CharacterCapacities.vue";
 import CharacterLuckPoints from "@/Pages/Character/CharacterLuckPoints.vue";
 import CharacterHealthPoints from "@/Pages/Character/CharacterHealthPoints.vue";
+import AvatarPicture from "@/Components/AvatarPicture.vue";
 
 defineProps({
     character: Object,
@@ -26,7 +27,7 @@ defineProps({
                 <p><span class="font-bold text-lg">{{ character.attributes[12].name }}</span> : {{ character.attributes[12].pivot.value}}</p>
             </div>
             <div class="flex flex-col">
-                <img src="https://picsum.photos/150" class="rounded-xl border-2 border-gray-700">
+                <AvatarPicture />
             </div>
         </template>
 

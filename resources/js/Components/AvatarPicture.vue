@@ -1,10 +1,17 @@
 <template>
-    <h1>Avatar picture</h1>
     <img
-        src="https://picsum.photos/150"
-        class="rounded-xl border-2 border-gray-700 hover:border-2 hover:opacity-50"
-        @click="test"
+        v-if="avatar"
+        :src="`/avatars/${avatar}`"
+        class="rounded-xl border-2 border-gray-700 hover:border-2 hover:opacity-50 w-48 h-48"
     >
+    <SecondaryButton
+        class="mt-2 text-center"
+        @click="openModal"
+        v-show="isEditable"
+    >
+        Mettre à jour
+    </SecondaryButton>
+
     <Modal
         :show="displayModal"
         :closeable="true"
@@ -18,6 +25,7 @@
                 ref="fileInput"
                 @change="handleFileChange"
                 class="my-4"
+                accept="image/*"
             />
 
             <button
@@ -33,16 +41,41 @@
 <script setup>
 import Modal from "@/Components/Modal.vue";
 import { ref } from "vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+
+defineProps({
+    isEditable: Boolean,
+    avatar: String,
+});
 
 let displayModal = ref(false);
+const file = ref(null);
 
-const test = () => {
+const openModal = () => {
     displayModal.value = !displayModal.value;
 }
 
-const uploadFile = () => {
-    alert('test upload')
-}
+const uploadFile = async () => {
+    if (!file.value) {
+        console.error("Aucun fichier sélectionné");
+        return;
+    }
+
+    try {
+        const formData = new FormData();
+        formData.append("avatar", file.value);
+
+        const response = await axios.post("/character/1/avatar/upload", formData);
+    } catch (error) {
+        console.error("Erreur lors du téléchargement du fichier:", error);
+    } finally {
+        window.location.reload();
+    }
+};
+
+const handleFileChange = (event) => {
+    file.value = event.target.files[0];
+};
 
 const closeModal = () => {
     displayModal.value = false

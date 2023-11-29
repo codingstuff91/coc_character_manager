@@ -27,7 +27,10 @@ defineProps({
                 <p><span class="font-bold text-lg">{{ character.attributes[12].name }}</span> : {{ character.attributes[12].pivot.value}}</p>
             </div>
             <div class="flex flex-col">
-                <AvatarPicture />
+                <AvatarPicture
+                    :isEditable="character.is_editable"
+                    :avatar="character.avatar"
+                />
             </div>
         </template>
 

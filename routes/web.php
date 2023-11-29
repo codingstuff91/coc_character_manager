@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function() {
 
     Route::resource('characters', App\Http\Controllers\CharacterController::class)->only('index', 'show');
     Route::post('character/{character}/attribute/{attribute}', [CharacterController::class, 'update_attribute'])->name('character.update_attribute');
+    Route::post('character/{character}/avatar/upload', [CharacterController::class, 'upload_avatar']);
 
     Route::middleware('admin')->group(function() {
         Route::prefix('admin')->group(function() {

@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -108,6 +109,10 @@ class CharacterController extends Controller
 
     public function upload_avatar(Character $character, Request $request): RedirectResponse
     {
+        if ($character->avatar) {
+            Storage::delete('avatars/' . $character->avatar);
+        }
+
         $fileName = time() . '.' . $request->file('avatar')->getClientOriginalExtension();
 
         $request->file('avatar')->storeAs(

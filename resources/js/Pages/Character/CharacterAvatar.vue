@@ -3,6 +3,7 @@
         v-if="avatar"
         :src="`/avatars/${avatar}`"
         class="rounded-xl border-2 border-gray-700 hover:border-2 hover:opacity-50 w-48 h-48"
+        @click="openAvatarModal"
     >
     <SecondaryButton
         class="mt-2 text-center"
@@ -36,6 +37,17 @@
             </button>
         </div>
     </Modal>
+
+    <Modal
+        :show="displayAvatarPicture"
+        :closeable="true"
+        @close="closeModal"
+    >
+        <img
+            :src="`/avatars/${avatar}`"
+            class="w-full h-full"
+        >
+    </Modal>
 </template>
 
 <script setup>
@@ -49,10 +61,15 @@ defineProps({
 });
 
 let displayModal = ref(false);
+let displayAvatarPicture = ref(false);
 const file = ref(null);
 
 const openModal = () => {
     displayModal.value = !displayModal.value;
+}
+
+const openAvatarModal = () => {
+    displayAvatarPicture.value = !displayAvatarPicture.value;
 }
 
 const uploadFile = async () => {
@@ -79,5 +96,6 @@ const handleFileChange = (event) => {
 
 const closeModal = () => {
     displayModal.value = false
+    displayAvatarPicture.value = false
 }
 </script>

@@ -1,4 +1,13 @@
 <template>
+    <button
+        @click="resetGauge"
+    >
+        <img
+            class="w-8 h-8 cursor:pointer"
+            src="/img/eraser.png"
+            alt="eraser"
+        >
+    </button>
     <div class="flex justify-center mt-4 flex-wrap">
         <div v-for="(item, index) in max" :key="index">
             <template v-if="index <= selectedPoints">
@@ -52,5 +61,10 @@ const calculateRemainingPoints = (value) => {
 const setGaugeValue = (value, max) => {
     selectedPoints.value = parseInt(value - 1);
     remainingPoints.value = calculateRemainingPoints(value);
+}
+
+const resetGauge = () => {
+    selectedPoints.value = -1;
+    setValue(-1);
 }
 </script>

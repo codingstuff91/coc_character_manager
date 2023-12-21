@@ -9,12 +9,7 @@ use Inertia\Inertia;
 
 class CapacityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): \Inertia\Response
     {
         $capacities = Capacity::query()
             ->with('characterWay')
@@ -26,12 +21,7 @@ class CapacityController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): \Inertia\Response
     {
         $characterWays = CharacterWay::oldest('name')->get();
 
@@ -40,13 +30,7 @@ class CapacityController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\RedirectResponse
     {
         Capacity::create([
             'name'             => $request->name,
@@ -58,27 +42,14 @@ class CapacityController extends Controller
         return to_route('capacities.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Capacity  $capacity
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Capacity $capacity)
+    public function edit(Capacity $capacity): \Inertia\Response
     {
         return Inertia::render('Admin/Capacity/Edit', [
             'capacity' => $capacity,
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Capacity  $capacity
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Capacity $capacity)
+    public function update(Request $request, Capacity $capacity): \Illuminate\Http\RedirectResponse
     {
         $capacity->update([
             'name'        => $request->name,
@@ -89,13 +60,7 @@ class CapacityController extends Controller
         return to_route('capacities.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Capacity  $capacity
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Capacity $capacity)
+    public function destroy(Capacity $capacity): \Illuminate\Http\RedirectResponse
     {
         $capacity->delete();
 

@@ -58,13 +58,13 @@ class CharacterController extends Controller
             return abort(403, "Vous ne pouvez pas consulter ce personnage");
         }
 
-        $character = Character::with([
+        $character->loadMissing([
             'attributes',
             'profile',
             'advantage',
             'family',
             'weapons',
-        ])->where('id', $character->id)->get()->first();
+        ]);
 
         $capacities = $character->capacities()
             ->with('characterWay')

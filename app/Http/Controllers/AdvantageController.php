@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Advantage;
 use App\Models\Family;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class AdvantageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): \Inertia\Response
     {
         $advantages = Advantage::query()
             ->orderBy('name', 'asc')
@@ -30,12 +26,7 @@ class AdvantageController extends Controller
         return $family->advantages;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): \Inertia\Response
     {
         $families = Family::all();
 
@@ -44,13 +35,7 @@ class AdvantageController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         Advantage::create([
             'name'        => $request->name,
@@ -61,27 +46,14 @@ class AdvantageController extends Controller
         return to_route('advantages.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Advantage  $advantage
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Advantage $advantage)
+    public function edit(Advantage $advantage): \Inertia\Response
     {
         return Inertia::render('Admin/Advantage/Edit', [
             'advantage' => $advantage,
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Advantage  $advantage
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Advantage $advantage)
+    public function update(Request $request, Advantage $advantage): RedirectResponse
     {
         $advantage->update([
             'name'        => $request->name,
@@ -91,13 +63,7 @@ class AdvantageController extends Controller
         return to_route('advantages.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Advantage  $advantage
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Advantage $advantage)
+    public function destroy(Advantage $advantage): RedirectResponse
     {
         $advantage->delete();
 

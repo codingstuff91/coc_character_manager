@@ -18,7 +18,7 @@ class CharacterController extends Controller
 {
     private function userIsAdmin(): bool
     {
-        return Auth::user()->admin;
+        return (bool) Auth::user()->admin;
     }
 
     public function index(Request $request): \Inertia\Response

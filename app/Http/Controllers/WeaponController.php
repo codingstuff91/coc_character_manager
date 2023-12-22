@@ -9,11 +9,6 @@ use Inertia\Inertia;
 
 class WeaponController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $weapons = Weapon::query()
@@ -25,22 +20,11 @@ class WeaponController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return Inertia::render('Admin/Weapon/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         Weapon::create([
@@ -53,12 +37,6 @@ class WeaponController extends Controller
         return to_route('weapons.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  App\Models\Weapon  $weapon
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Weapon $weapon)
     {
         return Inertia::render('Admin/Weapon/Edit', [
@@ -66,13 +44,6 @@ class WeaponController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  App\Models\Weapon  $weapon
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Weapon $weapon)
     {
         $weapon->update([
@@ -84,13 +55,7 @@ class WeaponController extends Controller
 
         return to_route('weapons.index');
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  App\Models\Weapon  $weapon
-     * @return \Illuminate\Http\Response
-     */
+
     public function choose(Weapon $weapon)
     {
         $characters = Character::select('id', 'name')->get();
@@ -108,12 +73,6 @@ class WeaponController extends Controller
         return to_route('admin.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  App\Models\Weapon  $weapon
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Weapon $weapon)
     {
         $weapon->delete();

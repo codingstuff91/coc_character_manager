@@ -15,18 +15,11 @@ use Inertia\Response;
 
 class CharacterController extends Controller
 {
-    /**
-     * @return bool
-     */
     private function userIsAdmin(): bool
     {
         return Auth::user()->admin;
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Inertia\Response
-     */
     public function index(Request $request): Response
     {
         $user = Auth::user();
@@ -38,20 +31,11 @@ class CharacterController extends Controller
         ]);
     }
 
-    /**
-     * @param Character $character
-     * @return bool
-     */
     private function isLinkedToCurrentUser(Character $character): bool
     {
         return $character->users->contains(Auth::user()->id);
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Inertia\Response
-     */
     public function show(Request $request, Character $character): Response
     {
         if(! $this->isLinkedToCurrentUser($character) && ! $this->userIsAdmin()) {

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Family extends Model
 {
@@ -12,12 +13,12 @@ class Family extends Model
     public $timestamps = false;
     protected $table = 'families';
 
-    public function profiles()
+    public function profiles(): HasMany
     {
         return $this->hasMany(Profile::class);
     }
 
-    public function advantages()
+    public function advantages(): HasMany
     {
         return $this->hasMany(Advantage::class);
     }

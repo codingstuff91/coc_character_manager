@@ -6,6 +6,7 @@ use App\Models\Attribute;
 use App\Models\AttributeCharacter;
 use App\Models\Character;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,7 @@ class CharacterController extends Controller
         return Auth::user()->admin;
     }
 
-    public function index(Request $request): Response
+    public function index(Request $request): \Inertia\Response
     {
         $user = Auth::user();
 
@@ -36,7 +37,7 @@ class CharacterController extends Controller
         return $character->users->contains(Auth::user()->id);
     }
 
-    public function show(Request $request, Character $character): Response
+    public function show(Request $request, Character $character): \Inertia\Response
     {
         if(! $this->isLinkedToCurrentUser($character) && ! $this->userIsAdmin()) {
             return abort(403, "Vous ne pouvez pas consulter ce personnage");
@@ -62,7 +63,7 @@ class CharacterController extends Controller
         ]);
     }
 
-    public function associate()
+    public function associate(): \Inertia\Response
     {
         $characters = Character::all();
         $users = User::all();
@@ -73,14 +74,14 @@ class CharacterController extends Controller
         ]);
     }
 
-    public function associateToUser(Request $request, Character $character, User $user)
+    public function associateToUser(Request $request, Character $character, User $user): RedirectResponse
     {
         $character->users()->attach($user);
 
         return to_route('admin.index');
     }
 
-    public function update_attribute(Character $character, Attribute $attribute, Request $request)
+    public function update_attribute(Character $character, Attribute $attribute, Request $request): JsonResponse
     {
         AttributeCharacter::where('character_id', $character->id)
             ->where('attribute_id', $attribute->id)

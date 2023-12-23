@@ -2,17 +2,14 @@ includes:
     - ./vendor/nunomaduro/larastan/extension.neon
 
 parameters:
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
 
     paths:
         - app/
 
-    # Level 9 is the highest level
-    level: 1
+    excludePaths:
+        - app/Http/Controllers/Auth/*
+        - app/Http/Controllers/ProfileController.php
 
-#    ignoreErrors:
-#        - '#PHPDoc tag @var#'
-#
-#    excludePaths:
-#        - ./*/*/FileToBeExcluded.php
-#
-#    checkMissingIterableValueType: false
+    level: 8

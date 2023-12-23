@@ -4,16 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Character extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name',
         'level',
@@ -26,11 +23,6 @@ class Character extends Model
         'family_id',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
     protected $casts = [
         'id'           => 'integer',
         'user_id'      => 'integer',
@@ -39,39 +31,39 @@ class Character extends Model
         'family_id'    => 'integer',
     ];
 
-    public function profile()
+    public function profile(): BelongsTo
     {
         return $this->belongsTo(Profile::class);
     }
 
-    public function advantage()
+    public function advantage(): BelongsTo
     {
         return $this->belongsTo(Advantage::class);
     }
 
-    public function family()
+    public function family(): BelongsTo
     {
         return $this->belongsTo(Family::class);
     }
 
-    public function attributes()
+    public function attributes(): BelongsToMany
     {
         return $this->belongsToMany(Attribute::class)
                     ->withPivot('value', 'modificator')
                     ->using(AttributeCharacter::class);
     }
 
-    public function users()
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
     }
 
-    public function weapons()
+    public function weapons(): BelongsToMany
     {
         return $this->belongsToMany(Weapon::class);
     }
 
-    public function capacities()
+    public function capacities(): BelongsToMany
     {
         return $this->belongsToMany(Capacity::class);
     }

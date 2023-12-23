@@ -7,7 +7,7 @@ use App\Models\Character;
 
 class AssignMainAttributesValuesAction
 {
-    public function execute(Character $character, $characterSkills)
+    public function execute(Character $character, array $characterSkills): void
     {
         foreach ($characterSkills as $skill) {
             AttributeCharacter::create([

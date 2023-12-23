@@ -6,6 +6,7 @@ use App\Models\Attribute;
 use App\Models\AttributeCharacter;
 use App\Models\Character;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,22 +16,16 @@ use Inertia\Response;
 
 class CharacterController extends Controller
 {
-    /**
-     * @return bool
-     */
     private function userIsAdmin(): bool
     {
-        return Auth::user()->admin;
+        return (bool) Auth::user()?->admin;
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Inertia\Response
-     */
-    public function index(Request $request): Response
+    public function index(Request $request): \Inertia\Response
     {
         $user = Auth::user();
 
+        /** @phpstan-ignore-next-line */
         $characters = $this->userIsAdmin() ? Character::all() : $user->characters;
 
         return Inertia::render('Character/CharacterIndex', [
@@ -38,33 +33,25 @@ class CharacterController extends Controller
         ]);
     }
 
-    /**
-     * @param Character $character
-     * @return bool
-     */
     private function isLinkedToCurrentUser(Character $character): bool
     {
+        /** @phpstan-ignore-next-line */
         return $character->users->contains(Auth::user()->id);
     }
 
-    /**
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Character  $character
-     * @return \Inertia\Response
-     */
-    public function show(Request $request, Character $character): Response
+    public function show(Request $request, Character $character): \Inertia\Response
     {
         if(! $this->isLinkedToCurrentUser($character) && ! $this->userIsAdmin()) {
             return abort(403, "Vous ne pouvez pas consulter ce personnage");
         }
 
-        $character = Character::with([
+        $character->loadMissing([
             'attributes',
             'profile',
             'advantage',
             'family',
             'weapons',
-        ])->where('id', $character->id)->get()->first();
+        ]);
 
         $capacities = $character->capacities()
             ->with('characterWay')
@@ -78,7 +65,7 @@ class CharacterController extends Controller
         ]);
     }
 
-    public function associate()
+    public function associate(): \Inertia\Response
     {
         $characters = Character::all();
         $users = User::all();
@@ -89,14 +76,14 @@ class CharacterController extends Controller
         ]);
     }
 
-    public function associateToUser(Request $request, Character $character, User $user)
+    public function associateToUser(Request $request, Character $character, User $user): RedirectResponse
     {
         $character->users()->attach($user);
 
         return to_route('admin.index');
     }
 
-    public function update_attribute(Character $character, Attribute $attribute, Request $request)
+    public function update_attribute(Character $character, Attribute $attribute, Request $request): JsonResponse
     {
         AttributeCharacter::where('character_id', $character->id)
             ->where('attribute_id', $attribute->id)
@@ -113,8 +100,10 @@ class CharacterController extends Controller
             Storage::delete('avatars/' . $character->avatar);
         }
 
+        /** @phpstan-ignore-next-line */
         $fileName = time() . '.' . $request->file('avatar')->getClientOriginalExtension();
 
+        /** @phpstan-ignore-next-line */
         $request->file('avatar')->storeAs(
             'avatars', $fileName
         );

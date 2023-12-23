@@ -4,17 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Family;
 use App\Models\Profile;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CharacterProfileController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): \Inertia\Response
     {
         $profiles = Profile::query()
             ->orderBy('name', 'desc')
@@ -25,35 +22,24 @@ class CharacterProfileController extends Controller
         ]);
     }
 
-    public function indexByFamily(Family $family)
+    public function indexByFamily(Family $family): Collection
     {
         return $family->profiles;
     }
 
-    public function getCharacterWays(Profile $profile)
+    public function getCharacterWays(Profile $profile): Collection
     {
         return $profile->characterWays->each(function($query) {
             return $query->capacities;
         });
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): \Inertia\Response
     {
         return Inertia::render('Admin/Profile/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         Profile::create([
             'name'        => $request->name,
@@ -63,27 +49,14 @@ class CharacterProfileController extends Controller
         return to_route('profiles.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Profile $profile)
+    public function edit(Profile $profile): \Inertia\Response
     {
         return Inertia::render('Admin/Profile/Edit', [
             'profile' => $profile,
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Profile $profile)
+    public function update(Request $request, Profile $profile): RedirectResponse
     {
         $profile->update([
             'name'        => $request->name,
@@ -93,13 +66,7 @@ class CharacterProfileController extends Controller
         return to_route('profiles.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Profile $profile)
+    public function destroy(Profile $profile): RedirectResponse
     {
         $profile->delete();
 

@@ -12,7 +12,7 @@ class DefineHealthPointsAttributeAction
     {
         return ($modificator + $family['lifeDiceScore']);
     }
-    public function execute(Character $character, array $characterAttributes, array $family)
+    public function execute(Character $character, array $characterAttributes, array $family): void
     {
         $healthPointsScore = $this->calculateHealthPointsScore($characterAttributes['constitution']['modificator'], $family);
 

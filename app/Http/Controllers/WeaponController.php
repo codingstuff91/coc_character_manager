@@ -4,17 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Character;
 use App\Models\Weapon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class WeaponController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(): \Inertia\Response
     {
         $weapons = Weapon::query()
             ->orderBy('name', 'desc')
@@ -25,23 +21,12 @@ class WeaponController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(): \Inertia\Response
     {
         return Inertia::render('Admin/Weapon/Create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         Weapon::create([
             'name'         => $request->name,
@@ -53,27 +38,14 @@ class WeaponController extends Controller
         return to_route('weapons.index');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  App\Models\Weapon  $weapon
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Weapon $weapon)
+    public function edit(Weapon $weapon): \Inertia\Response
     {
         return Inertia::render('Admin/Weapon/Edit', [
             'weapon' => $weapon,
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  App\Models\Weapon  $weapon
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Weapon $weapon)
+    public function update(Request $request, Weapon $weapon): RedirectResponse
     {
         $weapon->update([
             'name'         => $request->name,
@@ -84,14 +56,8 @@ class WeaponController extends Controller
 
         return to_route('weapons.index');
     }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  App\Models\Weapon  $weapon
-     * @return \Illuminate\Http\Response
-     */
-    public function choose(Weapon $weapon)
+
+    public function choose(Weapon $weapon): \Inertia\Response
     {
         $characters = Character::select('id', 'name')->get();
 
@@ -101,20 +67,14 @@ class WeaponController extends Controller
         ]);
     }
 
-    public function give(Weapon $weapon, Character $character)
+    public function give(Weapon $weapon, Character $character): RedirectResponse
     {
         $character->weapons()->attach($weapon);
 
         return to_route('admin.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  App\Models\Weapon  $weapon
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Weapon $weapon)
+    public function destroy(Weapon $weapon): RedirectResponse
     {
         $weapon->delete();
 

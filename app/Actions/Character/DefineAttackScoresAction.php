@@ -8,7 +8,7 @@ use App\Models\Character;
 
 class DefineAttackScoresAction
 {
-    public function execute(Character $character, array $characterAttributes)
+    public function execute(Character $character, array $characterAttributes): void
     {
         $contactAttackScore = $characterAttributes['strength']['modificator'];
         $distantAttackScore = $characterAttributes['dexterity']['modificator'];

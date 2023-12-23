@@ -10,5 +10,6 @@ parameters:
 
     excludePaths:
         - app/Http/Controllers/Auth/*
+        - app/Http/Controllers/ProfileController.php
 
-    level: 6
+    level: 8

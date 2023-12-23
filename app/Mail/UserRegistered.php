@@ -3,7 +3,6 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -30,9 +29,7 @@ class UserRegistered extends Mailable
      */
     public function envelope()
     {
-        return new Envelope(
-            subject: 'Bienvenue sur COC_PERSO_MANAGER',
-        );
+        return new Envelope(subject: 'Bienvenue sur COC_PERSO_MANAGER');
     }
 
     /**
@@ -42,9 +39,7 @@ class UserRegistered extends Mailable
      */
     public function content()
     {
-        return new Content(
-            markdown: 'emails.user.registered',
-        );
+        return new Content(markdown: 'emails.user.registered');
     }
 
     /**

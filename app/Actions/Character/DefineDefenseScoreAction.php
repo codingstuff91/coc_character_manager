@@ -8,11 +8,11 @@ use App\Models\Character;
 
 class DefineDefenseScoreAction
 {
-    public function calculateDefenseScore(int $dexterityModificator)
+    public function calculateDefenseScore(int $dexterityModificator): int
     {
         return (10 + $dexterityModificator);
     }
-    public function execute(Character $character, array $characterAttributes)
+    public function execute(Character $character, array $characterAttributes): void
     {
         $defenseScore = $this->calculateDefenseScore($characterAttributes['dexterity']['modificator']);
 

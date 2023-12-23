@@ -6,7 +6,12 @@ use App\Models\Character;
 
 class CreateCharacterGeneralInformationsAction
 {
-    public function execute(array $characterInformations, array $characterProfile, array $characterAdvantage, array $characterFamily)
+    public function execute(
+        array $characterInformations,
+        array $characterProfile,
+        array $characterAdvantage,
+        array $characterFamily
+    ): Character
     {
         $newCharacter = Character::create([
             'name'         => $characterInformations['name'],

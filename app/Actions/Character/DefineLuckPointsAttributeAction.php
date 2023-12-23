@@ -9,7 +9,7 @@ use App\Models\Character;
 
 class DefineLuckPointsAttributeAction
 {
-    public function defineFamilyBonusPoints(array $family)
+    public function defineFamilyBonusPoints(array $family): int
     {
         return match($family['id']) {
             FamilyEnum::ADVENTURE => 4,
@@ -20,7 +20,7 @@ class DefineLuckPointsAttributeAction
     {
         return ($modificator + $familyBonusPoints);
     }
-    public function execute(Character $character, array $characterAttributes, array $family)
+    public function execute(Character $character, array $characterAttributes, array $family): void
     {
         $familyBonusPoints = $this->defineFamilyBonusPoints($family);
 

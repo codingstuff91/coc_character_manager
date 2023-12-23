@@ -31,10 +31,7 @@ class CharacterCreateController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $newCharacter = resolve(CreateCharacterGeneralInformationsAction::class)
-                        ->execute($request->informations,
-                            $request->profile,
-                            $request->advantage,
-                            $request->family);
+                        ->execute($request->informations, $request->profile, $request->advantage, $request->family);
 
         resolve(AssignMainAttributesValuesAction::class)
             ->execute($newCharacter, $request->skills);

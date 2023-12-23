@@ -21,7 +21,7 @@ class CharacterController extends Controller
         return (bool) Auth::user()?->admin;
     }
 
-    public function index(Request $request): \Inertia\Response
+    public function index(Request $request): Response
     {
         $user = Auth::user();
 
@@ -39,10 +39,10 @@ class CharacterController extends Controller
         return $character->users->contains(Auth::user()->id);
     }
 
-    public function show(Request $request, Character $character): \Inertia\Response
+    public function show(Request $request, Character $character): Response
     {
-        if(! $this->isLinkedToCurrentUser($character) && ! $this->userIsAdmin()) {
-            return abort(403, "Vous ne pouvez pas consulter ce personnage");
+        if (! $this->isLinkedToCurrentUser($character) && ! $this->userIsAdmin()) {
+            return abort(403, 'Vous ne pouvez pas consulter ce personnage');
         }
 
         $character->loadMissing([
@@ -65,7 +65,7 @@ class CharacterController extends Controller
         ]);
     }
 
-    public function associate(): \Inertia\Response
+    public function associate(): Response
     {
         $characters = Character::all();
         $users = User::all();
@@ -97,16 +97,14 @@ class CharacterController extends Controller
     public function upload_avatar(Character $character, Request $request): RedirectResponse
     {
         if ($character->avatar) {
-            Storage::delete('avatars/' . $character->avatar);
+            Storage::delete('avatars/'.$character->avatar);
         }
 
         /** @phpstan-ignore-next-line */
-        $fileName = time() . '.' . $request->file('avatar')->getClientOriginalExtension();
+        $fileName = time().'.'.$request->file('avatar')->getClientOriginalExtension();
 
         /** @phpstan-ignore-next-line */
-        $request->file('avatar')->storeAs(
-            'avatars', $fileName
-        );
+        $request->file('avatar')->storeAs('avatars', $fileName);
 
         $character->avatar = $fileName;
         $character->save();

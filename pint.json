@@ -49,6 +49,11 @@
                 "case": "none"
             }
         },
+        "class_definition": {
+            "multi_line_extends_each_single_line": false,
+            "inline_constructor_arguments": false,
+            "space_before_parenthesis": true
+        },
         "single_quote": {
             "strings_containing_single_quote_chars": true
         },

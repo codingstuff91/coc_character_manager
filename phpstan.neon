@@ -9,6 +9,6 @@ parameters:
         - app/
 
     excludePaths:
-        - App/Http/Controllers/Auth/*
+        - app/Http/Controllers/Auth/*
 
     level: 6

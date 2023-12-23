@@ -48,8 +48,8 @@ class Character extends Model
     public function attributes(): BelongsToMany
     {
         return $this->belongsToMany(Attribute::class)
-                    ->withPivot('value', 'modificator')
-                    ->using(AttributeCharacter::class);
+            ->withPivot('value', 'modificator')
+            ->using(AttributeCharacter::class);
     }
 
     public function users(): BelongsToMany

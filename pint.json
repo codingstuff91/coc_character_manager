@@ -9,6 +9,10 @@
         },
         "lowercase_keywords": true,
         "lowercase_static_reference": true,
+        "native_function_casing": true,
+        "array_syntax": {
+            "syntax": "short"
+        },
         "braces": {
             "allow_single_line_anonymous_class_with_empty_body": false,
             "allow_single_line_closure": false,

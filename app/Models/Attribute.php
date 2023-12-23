@@ -22,7 +22,7 @@ class Attribute extends Model
     public function character(): BelongsToMany
     {
         return $this->belongsToMany(Character::class)
-                    ->withPivot('value', 'modificator')
-                    ->using(AttributeCharacter::class);
+            ->withPivot('value', 'modificator')
+            ->using(AttributeCharacter::class);
     }
 }

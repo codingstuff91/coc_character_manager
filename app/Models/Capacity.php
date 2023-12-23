@@ -11,6 +11,7 @@ class Capacity extends Model
     use HasFactory;
 
     protected $guarded = [];
+
     public function characterWay(): BelongsTo
     {
         return $this->belongsTo(CharacterWay::class);

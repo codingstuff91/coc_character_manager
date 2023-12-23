@@ -11,8 +11,7 @@ class CreateCharacterGeneralInformationsAction
         array $characterProfile,
         array $characterAdvantage,
         array $characterFamily
-    ): Character
-    {
+    ): Character {
         $newCharacter = Character::create([
             'name'         => $characterInformations['name'],
             'gender'       => $characterInformations['gender'],

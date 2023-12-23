@@ -13,7 +13,7 @@ class DefineDefenseScoreActionTest extends TestCase
     public function it_calculates_the_defense_score_correctly()
     {
         $defenseScore = resolve(DefineDefenseScoreAction::class)
-                        ->calculateDefenseScore(2);
+            ->calculateDefenseScore(2);
 
         $this->assertEquals(12, $defenseScore);
     }

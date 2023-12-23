@@ -11,15 +11,17 @@ class DefineLuckPointsAttributeAction
 {
     public function defineFamilyBonusPoints(array $family): int
     {
-        return match($family['id']) {
+        return match ($family['id']) {
             FamilyEnum::ADVENTURE => 4,
-            default => 2,
+            default               => 2,
         };
     }
+
     public function calculateLuckPointsScore(int $modificator, int $familyBonusPoints): int
     {
-        return ($modificator + $familyBonusPoints);
+        return $modificator + $familyBonusPoints;
     }
+
     public function execute(Character $character, array $characterAttributes, array $family): void
     {
         $familyBonusPoints = $this->defineFamilyBonusPoints($family);

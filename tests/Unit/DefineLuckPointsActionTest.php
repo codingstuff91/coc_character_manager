@@ -10,6 +10,7 @@ class DefineLuckPointsActionTest extends TestCase
 {
     /**
      * @test
+     *
      * @dataProvider provideFamiliesForBonusScores
      */
     public function it_defines_the_correct_bonus_points($expectedResult, $input)
@@ -41,6 +42,7 @@ class DefineLuckPointsActionTest extends TestCase
 
     /**
      * @test
+     *
      * @dataProvider provideDataForLuckPointsScore
      */
     public function it_calculates_the_total_luck_points_scores($expectedResult, $input)
@@ -50,7 +52,6 @@ class DefineLuckPointsActionTest extends TestCase
         $totalLuckPoints = $mainActionClass->calculateLuckPointsScore($input[0]['charisma']['modificator'], $input[1]['bonus_points']);
 
         $this->assertEquals($expectedResult, $totalLuckPoints);
-
     }
 
     public function provideDataForLuckPointsScore()

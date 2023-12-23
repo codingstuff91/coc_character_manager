@@ -10,7 +10,7 @@ use Inertia\Response;
 
 class AttributeController extends Controller
 {
-    public function index(): \Inertia\Response
+    public function index(): Response
     {
         $attributes = Attribute::query()
             ->orderBy('name', 'asc')
@@ -21,7 +21,7 @@ class AttributeController extends Controller
         ]);
     }
 
-    public function create(): \Inertia\Response
+    public function create(): Response
     {
         return Inertia::render('Admin/Attribute/Create');
     }
@@ -36,7 +36,7 @@ class AttributeController extends Controller
         return to_route('attributes.index');
     }
 
-    public function edit(Attribute $attribute): \Inertia\Response
+    public function edit(Attribute $attribute): Response
     {
         return Inertia::render('Admin/Attribute/Edit', [
             'attribute' => $attribute,

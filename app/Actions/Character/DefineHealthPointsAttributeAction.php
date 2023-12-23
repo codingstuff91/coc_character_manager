@@ -10,8 +10,9 @@ class DefineHealthPointsAttributeAction
 {
     public function calculateHealthPointsScore(int $modificator, array $family): int
     {
-        return ($modificator + $family['lifeDiceScore']);
+        return $modificator + $family['lifeDiceScore'];
     }
+
     public function execute(Character $character, array $characterAttributes, array $family): void
     {
         $healthPointsScore = $this->calculateHealthPointsScore($characterAttributes['constitution']['modificator'], $family);

@@ -14,7 +14,7 @@
         },
         "method_argument_space": {
             "keep_multiple_spaces_after_comma": false,
-            "on_multiline": "ensure_single_line"
+            "on_multiline": "ensure_fully_multiline"
         },
         "object_operator_without_whitespace": true,
         "trailing_comma_in_multiline": false,

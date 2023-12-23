@@ -11,12 +11,13 @@ use App\Actions\Character\DefineHealthPointsAttributeAction;
 use App\Actions\Character\DefineLuckPointsAttributeAction;
 use App\Models\Attribute;
 use App\Models\Family;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CharacterCreateController extends Controller
 {
-    public function create()
+    public function create(): \Inertia\Response
     {
         $families = Family::all();
         $attributes = Attribute::all();
@@ -27,7 +28,7 @@ class CharacterCreateController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $newCharacter = resolve(CreateCharacterGeneralInformationsAction::class)
                         ->execute($request->informations,

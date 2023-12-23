@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Character;
 use App\Models\Weapon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class WeaponController extends Controller
 {
-    public function index()
+    public function index(): \Inertia\Response
     {
         $weapons = Weapon::query()
             ->orderBy('name', 'desc')
@@ -20,12 +21,12 @@ class WeaponController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): \Inertia\Response
     {
         return Inertia::render('Admin/Weapon/Create');
     }
 
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         Weapon::create([
             'name'         => $request->name,
@@ -37,14 +38,14 @@ class WeaponController extends Controller
         return to_route('weapons.index');
     }
 
-    public function edit(Weapon $weapon)
+    public function edit(Weapon $weapon): \Inertia\Response
     {
         return Inertia::render('Admin/Weapon/Edit', [
             'weapon' => $weapon,
         ]);
     }
 
-    public function update(Request $request, Weapon $weapon)
+    public function update(Request $request, Weapon $weapon): RedirectResponse
     {
         $weapon->update([
             'name'         => $request->name,
@@ -56,7 +57,7 @@ class WeaponController extends Controller
         return to_route('weapons.index');
     }
 
-    public function choose(Weapon $weapon)
+    public function choose(Weapon $weapon): \Inertia\Response
     {
         $characters = Character::select('id', 'name')->get();
 
@@ -66,14 +67,14 @@ class WeaponController extends Controller
         ]);
     }
 
-    public function give(Weapon $weapon, Character $character)
+    public function give(Weapon $weapon, Character $character): RedirectResponse
     {
         $character->weapons()->attach($weapon);
 
         return to_route('admin.index');
     }
 
-    public function destroy(Weapon $weapon)
+    public function destroy(Weapon $weapon): RedirectResponse
     {
         $weapon->delete();
 

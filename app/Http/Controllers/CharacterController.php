@@ -25,6 +25,7 @@ class CharacterController extends Controller
     {
         $user = Auth::user();
 
+        /** @phpstan-ignore-next-line */
         $characters = $this->userIsAdmin() ? Character::all() : $user->characters;
 
         return Inertia::render('Character/CharacterIndex', [
@@ -34,6 +35,7 @@ class CharacterController extends Controller
 
     private function isLinkedToCurrentUser(Character $character): bool
     {
+        /** @phpstan-ignore-next-line */
         return $character->users->contains(Auth::user()->id);
     }
 

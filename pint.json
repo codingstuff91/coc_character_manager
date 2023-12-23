@@ -2,6 +2,13 @@
     "preset": "laravel",
     "rules": {
         "simplified_null_return": false,
+        "no_multiple_statements_per_line": true,
+        "class_reference_name_casing": true,
+        "constant_case": {
+            "case": "lower"
+        },
+        "lowercase_keywords": true,
+        "lowercase_static_reference": true,
         "braces": {
             "allow_single_line_anonymous_class_with_empty_body": false,
             "allow_single_line_closure": false,

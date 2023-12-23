@@ -27,7 +27,7 @@ class CharacterProfileController extends Controller
         return $family->profiles;
     }
 
-    public function getCharacterWays(Profile $profile)
+    public function getCharacterWays(Profile $profile): Collection
     {
         return $profile->characterWays->each(function($query) {
             return $query->capacities;

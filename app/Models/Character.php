@@ -22,7 +22,6 @@ class Character extends Model
         'advantage_id',
         'family_id',
     ];
-
     protected $casts = [
         'id'           => 'integer',
         'user_id'      => 'integer',

@@ -55,7 +55,7 @@
         "pint-test": [
             "./vendor/bin/pint --test"
         ],
-        "pint-correction": [
+        "pint": [
             "./vendor/bin/pint"
         ],
         "phpstan-analyse": [

@@ -62,7 +62,7 @@ class WeaponController extends Controller
         $characters = Character::select('id', 'name')->get();
 
         return Inertia::render('Admin/Weapon/Give', [
-            'weapon' => $weapon,
+            'weapon'     => $weapon,
             'characters' => $characters,
         ]);
     }

@@ -18,7 +18,7 @@ class CharacterController extends Controller
 {
     private function userIsAdmin(): bool
     {
-        return (bool) Auth::user()->admin;
+        return (bool) Auth::user()?->admin;
     }
 
     public function index(Request $request): \Inertia\Response
@@ -98,8 +98,10 @@ class CharacterController extends Controller
             Storage::delete('avatars/' . $character->avatar);
         }
 
+        /** @phpstan-ignore-next-line */
         $fileName = time() . '.' . $request->file('avatar')->getClientOriginalExtension();
 
+        /** @phpstan-ignore-next-line */
         $request->file('avatar')->storeAs(
             'avatars', $fileName
         );

@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             'admin' => true,
         ]);
 
+        $this->call(ChronicleSeeder::class);
         $this->call(FamilySeeder::class);
         $this->call(CharacterWaySeeder::class);
         $this->call(ProfileSeeder::class);

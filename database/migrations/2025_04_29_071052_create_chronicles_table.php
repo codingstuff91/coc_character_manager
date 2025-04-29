@@ -14,10 +14,11 @@ return new class extends Migration {
     {
         Schema::create('chronicles', function(Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->string('universe', 100);
             $table->integer('game_master_id')->unsigned();
             $table->foreign('game_master_id')->references('id')->on('users');
+            $table->string('name', 100);
+            $table->string('universe', 100);
+            $table->text('description');
             $table->timestamps();
         });
     }

@@ -13,8 +13,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('characters', function(Blueprint $table) {
-            $table->unsignedInteger('chronicle_id')->after('height');
-            $table->foreign('chronicle_id')->references('id')->on('chronicles');
+            $table->foreignId('game_master_id')->after('height');
         });
     }
 };

@@ -14,8 +14,7 @@ return new class extends Migration {
     {
         Schema::create('chronicles', function(Blueprint $table) {
             $table->id();
-            $table->integer('game_master_id')->unsigned();
-            $table->foreign('game_master_id')->references('id')->on('users');
+            $table->foreignId('game_master_id');
             $table->string('name', 100);
             $table->text('description');
             $table->string('universe', 100)->nullable();

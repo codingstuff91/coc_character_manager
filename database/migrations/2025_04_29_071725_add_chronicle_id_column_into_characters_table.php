@@ -13,7 +13,7 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('characters', function(Blueprint $table) {
-            $table->foreignId('game_master_id')->after('height');
+            $table->foreignId('chronicle_id')->after('height')->constrained();
         });
     }
 };

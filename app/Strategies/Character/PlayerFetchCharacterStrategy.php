@@ -2,6 +2,7 @@
 
 namespace App\Strategies\Character;
 
+use App\Models\Character;
 use App\Models\Chronicle;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Inertia\Inertia;
@@ -10,13 +11,13 @@ class PlayerFetchCharacterStrategy implements FetchCharacterInterface
 {
     public function retrieveCharacters(Authenticatable $user)
     {
-        if ($this->playerHasOnlyOneCharacter($user)) {
-            $character = $user->characters->first();
+        //        if ($this->playerHasOnlyOneCharacter($user)) {
+        //            $character = $user->characters->first();
+        //
+        //            return to_route('characters.show', $character);
+        //        }
 
-            return to_route('characters.show', $character);
-        }
-
-        $this->fetchChronicles($user);
+        return $this->fetchChronicles($user);
     }
 
     private function playerHasOnlyOneCharacter(Authenticatable $user)
@@ -28,7 +29,9 @@ class PlayerFetchCharacterStrategy implements FetchCharacterInterface
     {
         $chronicles = Chronicle::query()
             ->whereHas('characters', function($query) use ($user) {
-                $query->where('user_id', $user->id);
+                $query->whereHas('users', function($query) use ($user) {
+                    $query->where('character_user.user_id', $user->id);
+                });
             })
             ->get();
 

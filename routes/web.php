@@ -8,6 +8,7 @@ use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CharacterCreateController;
 use App\Http\Controllers\CharacterProfileController;
 use App\Http\Controllers\CharacterWayController;
+use App\Http\Controllers\ChronicleController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeaponController;
 use Illuminate\Foundation\Application;
@@ -55,6 +56,9 @@ Route::middleware('auth')->group(function() {
         Route::get('advantages/{family}/index', [AdvantageController::class, 'indexByFamily']);
         Route::get('profiles/{family}/index', [CharacterProfileController::class, 'indexByFamily']);
         Route::get('profiles/{profile}/character_ways', [CharacterProfileController::class, 'getCharacterWays']);
+
+        Route::get('chronicles', [ChronicleController::class, 'index'])->name('chronicle.index');
+        Route::get('chronicles/{chronicle}', [ChronicleController::class, 'show'])->name('chronicle.show');
     });
 });
 

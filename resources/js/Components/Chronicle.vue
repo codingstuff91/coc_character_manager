@@ -12,7 +12,7 @@
         <p class="text-white text-xl font-bold">{{ chronicle.description }}</p>
 
         <secondary-button class="mt-4">
-            <a :href="`/chronicle/${chronicle.id}`">
+            <a :href="`/chronicles/${chronicle.id}`">
                 Selectionner
             </a>
         </secondary-button>

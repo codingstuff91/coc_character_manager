@@ -17,7 +17,7 @@ class ChronicleFactory extends Factory
     public function definition()
     {
         return [
-            'name'        => fake()->name(),
+            'name'        => fake()->words(3, true),
             'universe'    => fake()->word(),
             'description' => fake()->text(),
         ];

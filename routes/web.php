@@ -57,7 +57,6 @@ Route::middleware('auth')->group(function() {
         Route::get('profiles/{family}/index', [CharacterProfileController::class, 'indexByFamily']);
         Route::get('profiles/{profile}/character_ways', [CharacterProfileController::class, 'getCharacterWays']);
 
-        Route::get('chronicles', [ChronicleController::class, 'index'])->name('chronicle.index');
         Route::get('chronicles/{chronicle}', [ChronicleController::class, 'show'])->name('chronicle.show');
     });
 });

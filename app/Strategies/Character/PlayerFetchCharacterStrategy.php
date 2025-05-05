@@ -11,11 +11,11 @@ class PlayerFetchCharacterStrategy implements FetchCharacterInterface
 {
     public function retrieveCharacters(Authenticatable $user)
     {
-        //        if ($this->playerHasOnlyOneCharacter($user)) {
-        //            $character = $user->characters->first();
-        //
-        //            return to_route('characters.show', $character);
-        //        }
+        if ($this->playerHasOnlyOneCharacter($user)) {
+            $character = $user->characters->first();
+
+            return to_route('characters.show', $character);
+        }
 
         return $this->fetchChronicles($user);
     }

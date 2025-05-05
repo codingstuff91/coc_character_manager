@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->integer('game_master_id')->unsigned();
             $table->foreign('game_master_id')->references('id')->on('users');
             $table->string('name', 100);
-            $table->string('universe', 100);
             $table->text('description');
+            $table->string('universe', 100)->nullable();
             $table->timestamps();
         });
     }

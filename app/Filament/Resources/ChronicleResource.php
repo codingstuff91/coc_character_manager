@@ -25,7 +25,7 @@ class ChronicleResource extends Resource
                     ->numeric(),
                 Forms\Components\TextInput::make('name')
                     ->required(),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\RichEditor::make('description')
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\TextInput::make('universe'),

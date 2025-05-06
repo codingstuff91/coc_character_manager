@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -26,15 +27,9 @@ class CharacterController extends Controller
         return $strategy->retrieveCharacters($user);
     }
 
-    private function isLinkedToCurrentUser(Character $character): bool
-    {
-        /** @phpstan-ignore-next-line */
-        return $character->users->contains(Auth::user()->id);
-    }
-
     public function show(Character $character): Response
     {
-        if (! $this->isLinkedToCurrentUser($character) && ! $this->userIsAdmin()) {
+        if (! Gate::allows('show-character', $character)) {
             return abort(403, 'Vous ne pouvez pas consulter ce personnage');
         }
 

@@ -36,7 +36,7 @@ class ChronicleResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('user.name', 'MJ')
+                TextColumn::make('user.name')
                     ->label('MJ')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')

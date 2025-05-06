@@ -39,7 +39,7 @@ class CapacityResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('characterWay.name')
-                    ->numeric()
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),

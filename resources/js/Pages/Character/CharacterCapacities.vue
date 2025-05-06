@@ -13,9 +13,8 @@ defineProps({
                 <h2 class="font-bold text-center text-xl">{{ capacity[0].character_way.name }}</h2>
                 <div v-for="level in capacity" :key="level.name" class="mt-4">
                     <p class="font-bold mb-2">Niv {{ level.level }} - {{ level.name}}</p>
-                    <p class="text-justify">{{ level.description }}</p>
+                    <p class="text-justify" v-html="level.description"></p>
                 </div>
-
             </div>
         </div>
     </div>

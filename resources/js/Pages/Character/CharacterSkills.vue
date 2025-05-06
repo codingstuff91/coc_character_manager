@@ -15,7 +15,7 @@
             <div class="attribute">
                 <h1 class="card-header">Trait principal : {{ character.advantage.name }}</h1>
                 <div class="mt-2 p-4 text-justify text-lg bg-gray-200 rounded-md">
-                    <p>{{ character.advantage.description }}</p>
+                    <p v-html="character.advantage.description "></p>
                 </div>
             </div>
         </div>

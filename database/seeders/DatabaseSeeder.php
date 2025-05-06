@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Attribute;
 use App\Models\Capacity;
 use App\Models\Character;
+use App\Models\Chronicle;
 use App\Models\User;
 use App\Models\Weapon;
 use Illuminate\Database\Seeder;
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             'admin' => true,
         ]);
 
+        $this->call(ChronicleSeeder::class);
         $this->call(FamilySeeder::class);
         $this->call(CharacterWaySeeder::class);
         $this->call(ProfileSeeder::class);
@@ -34,7 +36,8 @@ class DatabaseSeeder extends Seeder
         $this->call(WeaponSeeder::class);
 
         // Character creation
-        $character = Character::factory()->create();
+        $chronicle = Chronicle::first();
+        $character = Character::factory()->for($chronicle)->create();
 
         /**
          * Associate the character with user, weapon

@@ -6,42 +6,30 @@ use App\Models\Attribute;
 use App\Models\AttributeCharacter;
 use App\Models\Character;
 use App\Models\User;
+use App\Strategies\Character\FetchStrategyFactory;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class CharacterController extends Controller
 {
-    private function userIsAdmin(): bool
-    {
-        return (bool) Auth::user()?->admin;
-    }
-
-    public function index(Request $request): Response
+    public function index()
     {
         $user = Auth::user();
 
-        /** @phpstan-ignore-next-line */
-        $characters = $this->userIsAdmin() ? Character::all() : $user->characters;
+        $strategy = FetchStrategyFactory::create($user);
 
-        return Inertia::render('Character/CharacterIndex', [
-            'characters' => $characters
-        ]);
+        return $strategy->retrieveCharacters($user);
     }
 
-    private function isLinkedToCurrentUser(Character $character): bool
+    public function show(Character $character): Response
     {
-        /** @phpstan-ignore-next-line */
-        return $character->users->contains(Auth::user()->id);
-    }
-
-    public function show(Request $request, Character $character): Response
-    {
-        if (! $this->isLinkedToCurrentUser($character) && ! $this->userIsAdmin()) {
+        if (! Gate::allows('show-character', $character)) {
             return abort(403, 'Vous ne pouvez pas consulter ce personnage');
         }
 

@@ -66,4 +66,9 @@ class Character extends Model
     {
         return $this->belongsToMany(Capacity::class);
     }
+
+    public function chronicle(): BelongsTo
+    {
+        return $this->belongsTo(Chronicle::class);
+    }
 }

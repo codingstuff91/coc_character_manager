@@ -39,6 +39,8 @@ class DatabaseSeeder extends Seeder
         $chronicle = Chronicle::first();
         $character = Character::factory()->for($chronicle)->create();
 
+        $this->call(BackgroundSeeder::class);
+
         /**
          * Associate the character with user, weapon
          * attributes and capacities

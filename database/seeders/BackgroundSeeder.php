@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Background;
+use App\Models\Character;
 use Illuminate\Database\Seeder;
 
 class BackgroundSeeder extends Seeder
@@ -12,6 +13,8 @@ class BackgroundSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        $character = Character::first();
+
+        Background::factory()->for($character)->create();
     }
 }

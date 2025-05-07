@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Character extends Model
 {
@@ -70,5 +71,10 @@ class Character extends Model
     public function chronicle(): BelongsTo
     {
         return $this->belongsTo(Chronicle::class);
+    }
+
+    public function background(): HasOne
+    {
+        return $this->hasOne(Background::class);
     }
 }

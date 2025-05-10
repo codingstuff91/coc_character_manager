@@ -10,6 +10,8 @@ class Background extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['description'];
+
     public function character(): BelongsTo
     {
         return $this->belongsTo(Character::class);

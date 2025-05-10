@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('characters', App\Http\Controllers\CharacterController::class)->only('index', 'show');
     Route::post('character/{character}/attribute/{attribute}', [CharacterController::class, 'update_attribute'])->name('character.update_attribute');
     Route::post('character/{character}/avatar/upload', [CharacterController::class, 'upload_avatar']);
+    Route::patch('character/{character}/background', [CharacterController::class, 'update_background']);
 
     Route::get('chronicles/{chronicle}', [ChronicleController::class, 'show'])->name('chronicle.show');
 

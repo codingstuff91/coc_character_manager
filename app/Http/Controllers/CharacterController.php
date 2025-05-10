@@ -39,6 +39,7 @@ class CharacterController extends Controller
             'advantage',
             'family',
             'weapons',
+            'background',
         ]);
 
         $capacities = $character->capacities()
@@ -98,5 +99,12 @@ class CharacterController extends Controller
         $character->save();
 
         return to_route('characters.show', $character->id);
+    }
+
+    public function update_background(Character $character, Request $request)
+    {
+        $character->background->update([
+            'description' => $request->background,
+        ]);
     }
 }

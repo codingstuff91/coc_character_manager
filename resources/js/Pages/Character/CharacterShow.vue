@@ -27,7 +27,7 @@ defineProps({
                 <h2 class="flex items-center gap-4 font-bold text-lg text-gray-800 leading-tight mb-2 sm:text-2xl">
                     Niveau {{ character.level }}
                     <span>
-                        <a href="/level-up/promotion">
+                        <a :href="`/level-up/${character.id}/promotion`">
                             <img
                                 src="/img/level.png"
                                 class="w-12 h-12"

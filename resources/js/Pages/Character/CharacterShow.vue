@@ -21,10 +21,31 @@ defineProps({
     <AuthenticatedLayout>
         <template #header>
             <div class="flex flex-col">
-                <h2 class="font-bold text-lg text-gray-800 leading-tight mb-2 sm:text-2xl">{{ character.name }}</h2>
-                <h2 class="font-bold text-lg text-gray-800 leading-tight mb-2 sm:text-2xl">Niveau {{ character.level }}</h2>
-                <p><span class="font-bold text-lg">Famille :</span> {{ character.family.name }}</p>
-                <p><span class="font-bold text-lg">{{ character.attributes[12].name }}</span> : {{ character.attributes[12].pivot.value}}</p>
+                <h2 class="font-bold text-lg text-gray-800 leading-tight mb-2 sm:text-2xl">
+                    {{ character.name }}
+                </h2>
+                <h2 class="flex items-center gap-4 font-bold text-lg text-gray-800 leading-tight mb-2 sm:text-2xl">
+                    Niveau {{ character.level }}
+                    <span>
+                        <a href="/level-up/promotion">
+                            <img
+                                src="/img/level.png"
+                                class="w-12 h-12"
+                                alt="level-up"
+                            />
+                        </a>
+
+                    </span>
+                </h2>
+                <p>
+                    <span class="font-bold text-lg">Famille :</span>
+                    {{ character.family.name }}
+                </p>
+                <p>
+                    <span class="font-bold text-lg">
+                        {{ character.attributes[12].name }}
+                    </span> : {{ character.attributes[12].pivot.value}}
+                </p>
             </div>
             <div class="flex flex-col">
                 <Avatar

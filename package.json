@@ -18,6 +18,10 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "@tiptap/extension-floating-menu": "^2.12.0",
+        "@tiptap/pm": "^2.12.0",
+        "@tiptap/starter-kit": "^2.12.0",
+        "@tiptap/vue-3": "^2.12.0",
         "pinia": "^2.0.32",
         "sweetalert2": "^11.7.3"
     }

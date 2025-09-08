@@ -8,6 +8,7 @@ import CharacterCapacities from "@/Pages/Character/CharacterCapacities.vue";
 import CharacterLuckPoints from "@/Pages/Character/CharacterLuckPoints.vue";
 import CharacterHealthPoints from "@/Pages/Character/CharacterHealthPoints.vue";
 import Avatar from "@/Pages/Character/CharacterAvatar.vue";
+import Background from "@/Pages/Character/Background.vue";
 
 defineProps({
     character: Object,
@@ -35,6 +36,10 @@ defineProps({
         </template>
 
         <div class="mt-4 py-4 max-w-7xl xs:p-0 mx-auto sm:w-full bg-white">
+            <Background
+                :character="character"
+                :background="character.background.description"
+            />
             <CharacterSkills :character="character" />
             <CharacterHealthPoints :character="character" />
             <CharacterLuckPoints :character="character" />

@@ -23,4 +23,14 @@ class CharacterAttributeRepository
             ->first()
             ->modificator ?? 0;
     }
+
+    public function updateHealthPoints(int $characterId, int $healthPoints): void
+    {
+        DB::table('attribute_character')
+            ->where('attribute_id', 15)
+            ->where('character_id', $characterId)
+            ->update([
+                'value' => $healthPoints,
+            ]);
+    }
 }

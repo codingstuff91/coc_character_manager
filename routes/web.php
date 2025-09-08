@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function() {
 
     Route::prefix('level-up')->group(function() {
         Route::get('{character}/promotion', [LevelingController::class, 'promotion'])->name('level-up.promotion');
+        Route::put('confirm_health', [LevelingController::class, 'confirmHealthImprovement'])->name('level-up.confirm_health');
     });
 });
 

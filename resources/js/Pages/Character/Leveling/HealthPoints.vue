@@ -10,19 +10,22 @@ import InfoMessage from "@/Components/InfoMessage.vue";
 
 const props = defineProps({
     healthPoints: Number,
+    character: Object,
 });
 
 const form = reactive({
-    name: null,
+    healthPoints: null,
+    character_id: null,
 });
 
 onMounted(() => {
-    form.name = props.healthPoints;
+    form.healthPoints = props.healthPoints;
+    form.character_id = props.character.id;
 });
 
 function submitForm () {
-    console.log('test', form)
-    // router.post('/admin/character_ways', form);
+    // console.log(form)
+    router.put('/level-up/confirm_health', form);
 }
 </script>
 
@@ -43,7 +46,7 @@ function submitForm () {
                 <InputLabel class="mt-4" value="Nombre PV supplémentaires"/>
 
                 <TextInput
-                    v-model="form.name"
+                    v-model="form.healthPoints"
                     type="text"
                     class="mt-1 block w-full"
                     disabled
@@ -70,7 +73,6 @@ function submitForm () {
                 </button>
             </form>
         </div>
-
     </AuthenticatedLayout>
 </template>
 

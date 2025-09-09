@@ -27,11 +27,11 @@ class CharacterFactory extends Factory
     public function definition()
     {
         return [
-            'name'         => $this->faker->name,
-            'level'        => $this->faker->numberBetween(1, 5),
-            'gender'       => $this->faker->randomElement($this->genders),
-            'age'          => $this->faker->numberBetween(20, 50),
-            'height'       => $this->faker->numberBetween(150, 200),
+            'name'         => fake()->name(),
+            'level'        => fake()->numberBetween(1, 5),
+            'gender'       => fake()->randomElement($this->genders),
+            'age'          => fake()->numberBetween(20, 50),
+            'height'       => fake()->numberBetween(150, 200),
             'profile_id'   => Profile::inRandomOrder()->first()->id,
             'advantage_id' => Advantage::inRandomOrder()->first()->id,
             'family_id'    => Family::inRandomOrder()->first()->id,

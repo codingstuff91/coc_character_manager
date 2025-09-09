@@ -22,8 +22,8 @@ class AdvantageFactory extends Factory
     public function definition()
     {
         return [
-            'name'        => $this->faker->word,
-            'description' => $this->faker->text,
+            'name'        => fake()->word,
+            'description' => fake()->text,
         ];
     }
 }

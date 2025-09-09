@@ -17,7 +17,14 @@ class LevelingController extends Controller
     ) {
     }
 
-    public function promotion(Character $character): Response|ResponseFactory
+    public function promotion(Character $character)
+    {
+        $character->can_level_up = true;
+        $character->level += 1;
+        $character->save();
+    }
+
+    public function health(Character $character): Response|ResponseFactory
     {
         $healthPoints = $this->computeHealthPointAction->execute($character);
 

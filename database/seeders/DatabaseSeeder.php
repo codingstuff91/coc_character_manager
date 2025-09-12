@@ -50,7 +50,7 @@ class DatabaseSeeder extends Seeder
             DB::table('attribute_character')->insert([
                 'attribute_id' => $attribute->id,
                 'character_id' => $character->id,
-                'value'        => fake()->numberBetween('8', '20'),
+                'value'        => 10,
                 'modificator'  => 1,
             ]);
         }

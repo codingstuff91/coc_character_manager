@@ -5,9 +5,9 @@ namespace Tests\Feature\Leveling;
 use App\Enums\AttributeEnum;
 use App\Models\Character;
 use Illuminate\Support\Facades\DB;
-use function Pest\Laravel\post;
+use function Pest\Laravel\put;
 
-test('it_can_increase_the_character_health_points', function () {
+test('it_can_increase_the_character_health_points', function() {
     $this->seed();
 
     $character = Character::first();
@@ -15,8 +15,8 @@ test('it_can_increase_the_character_health_points', function () {
 
     $this->actingAs($user);
 
-    post(route('level-up.confirm_health', $character), [
-        'character_id'  => $character->id,
+    put(route('level-up.confirm_health', $character), [
+        'character_id' => $character->id,
         'healthPoints' => 5,
     ]);
 

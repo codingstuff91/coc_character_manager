@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Enums\AttributeEnum;
 use App\Models\Character;
 use Illuminate\Support\Facades\DB;
 
@@ -21,13 +22,21 @@ class CharacterAttributeRepository
         return $character->family->life_dice_score;
     }
 
-    public function updateHealthPoints(int $characterId, int $healthPoints): void
+    public function updateHealthPoints(int $characterId, int $additionnalHealthPoints): void
     {
+        $characterHealthPoints = DB::table('attribute_character')
+            ->where('attribute_id', AttributeEnum::HEALTH_POINTS_MAX->value)
+            ->where('character_id', $characterId)
+            ->first()
+            ->value;
+
+        $characterHealthPoints += $additionnalHealthPoints;
+
         DB::table('attribute_character')
-            ->where('attribute_id', 15)
+            ->where('attribute_id', AttributeEnum::HEALTH_POINTS_MAX->value)
             ->where('character_id', $characterId)
             ->update([
-                'value' => $healthPoints,
+                'value' => $characterHealthPoints,
             ]);
     }
 }

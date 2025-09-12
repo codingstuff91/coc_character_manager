@@ -14,8 +14,5 @@ test('it_can_promote_a_character', function() {
 
     $expectedNewLevel = $character->level + 1;
 
-    expect($response->status())->toBe(200)
-        ->and(Character::first()->can_level_up)->toBe(1)
-        ->and(Character::first()->level)->toBe($expectedNewLevel)
-        ->and($response->status())->toBe(200);
+    expect(Character::first()->level)->toBe($expectedNewLevel);
 });

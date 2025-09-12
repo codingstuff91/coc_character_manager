@@ -19,9 +19,10 @@ class LevelingController extends Controller
 
     public function promotion(Character $character)
     {
-        $character->can_level_up = true;
         $character->level += 1;
         $character->save();
+
+        return to_route('level-up.health', $character);
     }
 
     public function health(Character $character): Response|ResponseFactory

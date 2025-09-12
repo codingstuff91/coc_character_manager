@@ -17,12 +17,13 @@ class DefineAdditionnalHealthPointsAction
 
     public function execute(Character $character): int
     {
-        $constitutionModificator = $this->characterRepository->getConstitutionModificator($character->id);
-        $lifeDice = $this->characterRepository->getLifeDiceValue($character->id);
+        $lifeDice = $this->characterRepository->getLifeDiceValue($character);
 
         if ($this->levelIsEven($character->level)) {
             return $this->diceRoller->roll($lifeDice);
         }
+
+        $constitutionModificator = $this->characterRepository->getConstitutionModificator($character->id);
 
         if ($constitutionModificator < 0) {
             return 0;

@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Character;
 use Illuminate\Support\Facades\DB;
 
 class CharacterAttributeRepository
@@ -15,13 +16,9 @@ class CharacterAttributeRepository
             ->modificator ?? 0;
     }
 
-    public function getLifeDiceValue(int $characterId): int
+    public function getLifeDiceValue(Character $character): int
     {
-        return DB::table('attribute_character')
-            ->where('attribute_id', 13)
-            ->where('character_id', $characterId)
-            ->first()
-            ->modificator ?? 0;
+        return $character->family->life_dice_score;
     }
 
     public function updateHealthPoints(int $characterId, int $healthPoints): void

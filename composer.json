@@ -24,6 +24,7 @@
         "nunomaduro/collision": "6.4.*",
         "nunomaduro/larastan": "2.11.*",
         "pestphp/pest": "1.23.*",
+        "pestphp/pest-plugin-laravel": "1.4.*",
         "phpunit/phpunit": "9.6.*",
         "spatie/laravel-ignition": "2.9.*"
     },

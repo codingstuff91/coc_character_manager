@@ -24,7 +24,6 @@ onMounted(() => {
 });
 
 function submitForm () {
-    // console.log(form)
     router.put('/level-up/confirm_health', form);
 }
 </script>
@@ -36,6 +35,7 @@ function submitForm () {
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Amélioration PV du personnage</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Niveau {{ character.level - 1 }} --> {{ character.level }}</h2>
         </template>
 
         <div class="p-6 mx-auto">
@@ -58,11 +58,11 @@ function submitForm () {
                 </info-message>
 
                 <info-message>
-                    En cas de modif de Constitution négatif le modif est retranché au résultat de Dé de Vie...
+                    Si Niveau est impair, on prend le modificateur de Constitution.
                 </info-message>
 
                 <info-message>
-                    Si Niveau est impair, on prend le modificateur de Constitution.
+                    En cas de modif de Constitution négatif le modif est retranché au résultat de Dé de Vie...
                 </info-message>
 
                 <button

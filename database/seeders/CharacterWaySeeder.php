@@ -51,16 +51,18 @@ class CharacterWaySeeder extends Seeder
     public function run()
     {
         foreach ($this->characterWays as $way) {
-            CharacterWay::factory(10)->create([
+            CharacterWay::factory()->create([
                 'name' => $way,
-            ])->each(function($characterWay) {
-                for ($i = 1; $i < 6; $i++) {
-                    Capacity::factory()->for($characterWay)->create([
-                        'level'       => $i,
-                        'description' => $this->faker->paragraph(2),
-                    ]);
-                }
-            });
+            ]);
+        }
+
+        foreach (CharacterWay::all() as $characterWay) {
+            for ($i = 1; $i < 6; $i++) {
+                Capacity::factory()->for($characterWay)->create([
+                    'level'       => $i,
+                    'description' => $this->faker->paragraph(2),
+                ]);
+            }
         }
     }
 }

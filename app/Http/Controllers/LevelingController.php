@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\Capacity\GetCharacterWaysAndCapacities;
+use App\Actions\Capacity\GetCharacterWaysAndCapacitiesAction;
 use App\Actions\Character\AssignCapacitiesAction;
 use App\Actions\Leveling\DefineAdditionnalHealthPointsAction;
 use App\Actions\Leveling\FinalizeCharacterPromotionAction;
@@ -17,7 +17,7 @@ class LevelingController extends Controller
     public function __construct(
         public DefineAdditionnalHealthPointsAction $computeHealthPointAction,
         public CharacterAttributeRepository $characterAttributeRepository,
-        public GetCharacterWaysAndCapacities $getCharacterCapacities,
+        public GetCharacterWaysAndCapacitiesAction $getCharacterCapacitiesAction,
         public AssignCapacitiesAction $assignCapacitiesAction,
         public FinalizeCharacterPromotionAction $finalizeCharacterPromotionAction,
     ) {
@@ -50,7 +50,7 @@ class LevelingController extends Controller
 
     public function capacities(Character $character)
     {
-        [$ownedWays, $remainingWays, $knownCapacities] = $this->getCharacterCapacities->execute($character);
+        [$ownedWays, $remainingWays, $knownCapacities] = $this->getCharacterCapacitiesAction->execute($character);
 
         return inertia('Character/Leveling/Capacities', [
             'character'       => $character,

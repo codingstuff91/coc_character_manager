@@ -5,7 +5,7 @@ namespace App\Actions\Capacity;
 use App\Models\Character;
 use App\Models\CharacterWay;
 
-class GetCharacterWaysAndCapacities
+class GetCharacterWaysAndCapacitiesAction
 {
     public function execute(Character $character)
     {

@@ -43,6 +43,10 @@ function submitForm () {
                 class="w-full flex flex-col"
                 @submit.prevent="submitForm"
             >
+                <info-message>
+                    Dé de vie du personnage : D{{ character.family.life_dice_score }}
+                </info-message>
+
                 <InputLabel class="mt-4" value="Nombre PV supplémentaires"/>
 
                 <TextInput
@@ -54,15 +58,9 @@ function submitForm () {
                 />
 
                 <info-message>
-                    Si Niveau est pair, c'est le résultat du Dé de Vie qui compte.
-                </info-message>
-
-                <info-message>
-                    Si Niveau est impair, on prend le modificateur de Constitution.
-                </info-message>
-
-                <info-message>
-                    En cas de modif de Constitution négatif le modif est retranché au résultat de Dé de Vie...
+                    <p>Si le niveau est pair, c'est le résultat du Dé de Vie qui compte.</p>
+                    <p>Si le niveau est impair, on prend le modificateur de Constitution.</p>
+                    <p>En cas de modif de Constitution négatif le modificateur est retranché au résultat de Dé de Vie...</p>
                 </info-message>
 
                 <button

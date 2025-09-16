@@ -98,6 +98,7 @@ function submitCapacities() {
 
                 <div
                     class="mt-2 bg-gray-200 rounded-lg p-4"
+                    :class="{ 'bg-green-200': isSelectedCapacity(capacity.id) }"
                     v-for="capacity in way.capacities" :key="capacity.id"
                     v-show="isUnknownCapacity(capacity.id)"
                 >

@@ -38,5 +38,12 @@ class CharacterAttributeRepository
             ->update([
                 'value' => $characterHealthPoints,
             ]);
+
+        DB::table('attribute_character')
+            ->where('attribute_id', AttributeEnum::HEALTH_POINTS->value)
+            ->where('character_id', $characterId)
+            ->update([
+                'value' => $characterHealthPoints,
+            ]);
     }
 }

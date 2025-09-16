@@ -55,7 +55,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        foreach (Capacity::all()->random(3) as $capacity) {
+        foreach (Capacity::find([1,2,6]) as $capacity) {
             $character->capacities()->attach($capacity);
         }
     }

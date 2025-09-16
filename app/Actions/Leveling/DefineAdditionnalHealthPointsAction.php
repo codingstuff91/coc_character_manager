@@ -5,7 +5,6 @@ namespace App\Actions\Leveling;
 use App\Models\Character;
 use App\Repositories\CharacterAttributeRepository;
 use App\Services\DiceRoller;
-use Illuminate\Support\Facades\DB;
 
 class DefineAdditionnalHealthPointsAction
 {
@@ -18,18 +17,22 @@ class DefineAdditionnalHealthPointsAction
     public function execute(Character $character): int
     {
         $lifeDice = $this->characterRepository->getLifeDiceValue($character);
+        $constitutionModificator = $this->characterRepository->getConstitutionModificator($character->id);
+        $additionalHealthPoints = $this->diceRoller->roll($lifeDice);
 
         if ($this->levelIsEven($character->level)) {
-            return $this->diceRoller->roll($lifeDice);
-        }
+            if ($constitutionModificator < 0) {
+                return $additionalHealthPoints + ($constitutionModificator);
+            }
 
-        $constitutionModificator = $this->characterRepository->getConstitutionModificator($character->id);
+            return $additionalHealthPoints;
+        }
 
         if ($constitutionModificator < 0) {
             return 0;
         }
 
-        return 1;
+        return $constitutionModificator;
     }
 
     private function levelIsEven(int $characterLevel): bool

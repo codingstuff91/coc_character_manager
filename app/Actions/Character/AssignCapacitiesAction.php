@@ -8,8 +8,6 @@ class AssignCapacitiesAction
 {
     public function execute(Character $character, array $capacities): void
     {
-        foreach ($capacities as $capacity) {
-            $character->capacities()->attach($capacity);
-        }
+        $character->capacities()->syncWithoutDetaching($capacities);
     }
 }

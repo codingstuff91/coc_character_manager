@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Actions\Capacity\GetCharacterWaysAndCapacities;
+use App\Actions\Character\AssignCapacitiesAction;
 use App\Actions\Leveling\DefineAdditionnalHealthPointsAction;
 use App\Models\Character;
 use App\Repositories\CharacterAttributeRepository;
@@ -16,6 +17,7 @@ class LevelingController extends Controller
         public DefineAdditionnalHealthPointsAction $computeHealthPointAction,
         public CharacterAttributeRepository $characterAttributeRepository,
         public GetCharacterWaysAndCapacities $getCharacterCapacities,
+        public AssignCapacitiesAction $assignCapacitiesAction,
     ) {
     }
 
@@ -56,8 +58,10 @@ class LevelingController extends Controller
         ]);
     }
 
-    public function confirmCapacities(Request $request)
+    public function confirmCapacities(Request $request, Character $character)
     {
-        dd($request->all());
+        $this->assignCapacitiesAction->execute($character, $request->capacities);
+
+        return to_route('characters.show', $character);
     }
 }

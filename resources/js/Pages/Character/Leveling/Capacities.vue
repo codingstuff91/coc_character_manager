@@ -22,15 +22,21 @@ const isUnknownCapacity = computed(() => {
     return (capacityId) => ! props.knownCapacities.includes(capacityId);
 });
 
-function addCapacities(capacityId) {
-    if (!form.capacities.includes(capacityId)) {
+const isSelectedCapacity = computed(() => {
+    return (capacityId) => form.capacities.includes(capacityId);
+});
+
+function selectCapacity(capacityId) {
+    const index = form.capacities.indexOf(capacityId);
+    if (index !== -1) {
+        form.capacities.splice(index, 1);
+    } else {
         form.capacities.push(capacityId);
     }
 }
 
 function submitCapacities() {
-    console.log(form.capacities);
-    router.put('/level-up/confirm_capacities', form.capacities);
+    router.put('capacities', form);
 }
 </script>
 
@@ -68,10 +74,34 @@ function submitCapacities() {
 
                 <div
                     class="mt-2 bg-gray-200 rounded-lg p-4"
+                    :class="{ 'bg-green-200': isSelectedCapacity(capacity.id) }"
                     v-for="capacity in way.capacities" :key="capacity.id"
                     v-show="isUnknownCapacity(capacity.id)"
                 >
-                    <h3 class="font-bold" @click="addCapacities(capacity.id)">
+                    <h3 class="font-bold" @click="selectCapacity(capacity.id)">
+                        Niv {{ capacity.level }} - {{ capacity.name }}
+                    </h3>
+                    <p>
+                        {{ capacity.description }}
+                    </p>
+                </div>
+            </Collapsible>
+
+            <h2 class="mt-4 text-xl text-center font-bold">
+                Voies inconnues pour le personnage
+            </h2>
+
+            <Collapsible
+                v-for="way in remainingWays" :key="way.id"
+                :title="way.name"
+            >
+
+                <div
+                    class="mt-2 bg-gray-200 rounded-lg p-4"
+                    v-for="capacity in way.capacities" :key="capacity.id"
+                    v-show="isUnknownCapacity(capacity.id)"
+                >
+                    <h3 class="font-bold" @click="selectCapacity(capacity.id)">
                         Niv {{ capacity.level }} - {{ capacity.name }}
                     </h3>
                     <p>

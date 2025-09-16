@@ -53,6 +53,9 @@ Route::middleware('auth')->group(function() {
         Route::get('{character}/promotion', [LevelingController::class, 'promotion'])->name('level-up.promotion');
         Route::get('{character}/health', [LevelingController::class, 'health'])->name('level-up.health');
         Route::put('confirm_health', [LevelingController::class, 'confirmHealthImprovement'])->name('level-up.confirm_health');
+
+        Route::get('{character}/capacities', [LevelingController::class, 'capacities'])->name('level-up.capacities');
+        Route::put('{character}/capacities', [LevelingController::class, 'confirmCapacities'])->name('level-up.confirm_capacities');
     });
 });
 

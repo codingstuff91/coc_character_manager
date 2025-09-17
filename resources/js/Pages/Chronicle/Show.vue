@@ -16,7 +16,7 @@ defineProps({
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">Personnages</h2>
         </template>
 
-        <div class="py-6 max-w-2xl mx-auto sm:w-full">
+        <div class="py-6 px-4 max-w-2xl mx-auto sm:w-full">
             <Character
                 class="mb-4"
                 v-for="character in characters"

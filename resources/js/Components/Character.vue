@@ -9,7 +9,7 @@ defineProps({
 })
 </script>
 <template>
-    <div class="rounded-lg p-4 bg-slate-400 w-[60%] mx-auto drop-shadow-2xl">
+    <div class="rounded-lg p-4 bg-slate-400 w-full mx-auto drop-shadow-2xl md:w-[60%]">
         <div class="flex justify-center items-center w-[80%] mx-auto">
             <img
                 v-if="character.gender === 'M'"
@@ -43,7 +43,3 @@ defineProps({
         </div>
     </div>
 </template>
-
-<style scoped>
-
-</style>

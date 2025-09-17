@@ -17,7 +17,9 @@ class FamilyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'            => fake()->word,
+            'description'     => fake()->text,
+            'life_dice_score' => 10,
         ];
     }
 }

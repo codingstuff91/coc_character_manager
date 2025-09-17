@@ -11,35 +11,31 @@
 |
 */
 
-uses(Tests\TestCase::class)->in('Feature');
+use App\Models\Advantage;
+use App\Models\Character;
+use App\Models\Chronicle;
+use App\Models\Family;
+use App\Models\Profile;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-/*
-|--------------------------------------------------------------------------
-| Expectations
-|--------------------------------------------------------------------------
-|
-| When you're writing tests, you often need to check that values meet certain conditions. The
-| "expect()" function gives you access to a set of "expectations" methods that you can use
-| to assert different things. Of course, you may extend the Expectation API at any time.
-|
-*/
+uses(TestCase::class, RefreshDatabase::class)->in('Feature');
+uses(TestCase::class, RefreshDatabase::class)->in('Unit');
 
-expect()->extend('toBeOne', function() {
-    return $this->toBe(1);
-});
-
-/*
-|--------------------------------------------------------------------------
-| Functions
-|--------------------------------------------------------------------------
-|
-| While Pest is very powerful out-of-the-box, you may have some testing code specific to your
-| project that you don't want to repeat in every file. Here you can also expose helpers as
-| global functions to help you to reduce the number of lines of code in your test files.
-|
-*/
-
-function something()
+function createUser(): User
 {
-    // ..
+    return User::factory()->create();
+}
+
+function createCharacter(?User $user = null): Character
+{
+    $player = $user ?? User::factory()->create();
+
+    $family = Family::factory()->create();
+    $profile = Profile::factory()->for($family)->create();
+    $advantage = Advantage::factory()->for($family)->create();
+    $chronicle = Chronicle::factory()->for($player)->create();
+
+    return Character::factory()->for($chronicle)->create();
 }

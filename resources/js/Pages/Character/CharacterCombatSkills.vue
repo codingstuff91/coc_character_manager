@@ -8,7 +8,6 @@
     }
 
     const totalDefense = (defense, bonus) => {
-        console.log([defense,bonus]);
         return parseInt(10) + parseInt(defense) + parseInt(bonus);
     }
 </script>

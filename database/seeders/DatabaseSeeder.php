@@ -50,12 +50,12 @@ class DatabaseSeeder extends Seeder
             DB::table('attribute_character')->insert([
                 'attribute_id' => $attribute->id,
                 'character_id' => $character->id,
-                'value'        => fake()->numberBetween('1', '20'),
-                'modificator'  => fake()->numberBetween('-5', '5'),
+                'value'        => 10,
+                'modificator'  => 1,
             ]);
         }
 
-        foreach (Capacity::all()->random(3) as $capacity) {
+        foreach (Capacity::find([1,2,6]) as $capacity) {
             $character->capacities()->attach($capacity);
         }
     }

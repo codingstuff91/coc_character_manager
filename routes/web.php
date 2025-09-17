@@ -5,6 +5,7 @@ use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CharacterCreateController;
 use App\Http\Controllers\CharacterProfileController;
 use App\Http\Controllers\ChronicleController;
+use App\Http\Controllers\LevelingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WeaponController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,16 @@ Route::middleware('auth')->group(function() {
         Route::get('advantages/{family}/index', [AdvantageController::class, 'indexByFamily']);
         Route::get('profiles/{family}/index', [CharacterProfileController::class, 'indexByFamily']);
         Route::get('profiles/{profile}/character_ways', [CharacterProfileController::class, 'getCharacterWays']);
+    });
+
+    Route::prefix('level-up')->group(function() {
+        Route::get('{character}/improvement', [LevelingController::class, 'improvement'])->name('level-up.improvement');
+        Route::get('{character}/promotion', [LevelingController::class, 'promotion'])->name('level-up.promotion');
+        Route::get('{character}/health', [LevelingController::class, 'health'])->name('level-up.health');
+        Route::put('confirm_health', [LevelingController::class, 'confirmHealthImprovement'])->name('level-up.confirm_health');
+
+        Route::get('{character}/capacities', [LevelingController::class, 'capacities'])->name('level-up.capacities');
+        Route::put('{character}/capacities', [LevelingController::class, 'confirmCapacities'])->name('level-up.confirm_capacities');
     });
 });
 

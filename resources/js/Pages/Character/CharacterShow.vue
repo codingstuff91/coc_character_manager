@@ -8,9 +8,6 @@ import CharacterCapacities from "@/Pages/Character/CharacterCapacities.vue";
 import CharacterLuckPoints from "@/Pages/Character/CharacterLuckPoints.vue";
 import CharacterHealthPoints from "@/Pages/Character/CharacterHealthPoints.vue";
 import Avatar from "@/Pages/Character/CharacterAvatar.vue";
-import { usePage } from '@inertiajs/vue3'
-const page = usePage()
-const user = page.props.auth.user
 
 defineProps({
     character: Object,
@@ -33,15 +30,6 @@ defineProps({
                         <a :href="`/level-up/${character.id}/promotion`">
                             <img
                                 src="/img/level.png"
-                                class="w-12 h-12"
-                                alt="level-up"
-                            />
-                        </a>
-                    </span>
-                    <span v-show="! character.can_level_up && user.admin">
-                        <a :href="`/level-up/${character.id}/improvement`">
-                            <img
-                                src="/img/improve.png"
                                 class="w-12 h-12"
                                 alt="level-up"
                             />

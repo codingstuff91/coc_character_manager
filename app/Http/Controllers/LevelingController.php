@@ -8,6 +8,7 @@ use App\Actions\Leveling\DefineAdditionnalHealthPointsAction;
 use App\Actions\Leveling\FinalizeCharacterPromotionAction;
 use App\Models\Character;
 use App\Repositories\CharacterAttributeRepository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Response;
 use Inertia\ResponseFactory;
@@ -21,6 +22,14 @@ class LevelingController extends Controller
         public AssignCapacitiesAction $assignCapacitiesAction,
         public FinalizeCharacterPromotionAction $finalizeCharacterPromotionAction,
     ) {
+    }
+
+    public function improvement(Character $character): RedirectResponse
+    {
+        $character->can_level_up = true;
+        $character->save();
+
+        return to_route('characters.show', $character);
     }
 
     public function promotion(Character $character)
@@ -60,7 +69,7 @@ class LevelingController extends Controller
         ]);
     }
 
-    public function confirmCapacities(Request $request, Character $character): \Illuminate\Http\RedirectResponse
+    public function confirmCapacities(Request $request, Character $character): RedirectResponse
     {
         $this->assignCapacitiesAction->execute($character, $request->capacities);
 

@@ -1,123 +1,99 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
-
-defineProps({
-    canLogin: Boolean,
-    canRegister: Boolean,
-    laravelVersion: String,
-    phpVersion: String,
-});
+import { Link } from '@inertiajs/vue3'
 </script>
 
 <template>
-    <Head title="Bienvenue" />
-
-    <div
-        class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0"
-    >
-        <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            <Link
-                v-if="$page.props.auth.user"
-                :href="route('characters.index')"
-                class="text-sm text-gray-700 dark:text-gray-500 underline"
-                >Dashboard
-            </Link>
-
-            <template v-else>
-                <Link
-                    :href="route('login')"
-                    class="text-xl text-gray-700 dark:text-gray-500">
-                    Se connecter
-                </Link>
-
-                <Link
-                    v-if="canRegister"
-                    :href="route('register')"
-                    class="ml-4 text-xl text-gray-700 dark:text-gray-500"
-                    >Inscription
-                </Link>
-            </template>
-        </div>
-
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex flex-col items-center pt-8 sm:justify-start sm:pt-0">
-                <h1 class="text-xl text-red-500 font-bold md:text-3xl">
-                    CHRONIQUES OUBLIEES CONTEMPORAIN
+    <section class="min-h-screen flex items-center justify-center bg-gradient-to-b from-gray-900 via-gray-900/95 to-gray-800 text-gray-100 p-6">
+        <div class="max-w-6xl w-full">
+            <!-- Hero -->
+            <div class="text-center mb-10">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-gray-200 drop-shadow-lg">
+                    Chroniques Oubliées<br />Contemporain
                 </h1>
-                <h2 class="text-lg text-red-500 font-bold mt-2 md:text-2xl">
-                    GESTION DE PERSONNAGES
-                </h2>
+                <p class="my-4 text-lg sm:text-xl text-gray-300 font-medium font-bold">Gestion de feuilles de personnages</p>
             </div>
 
-            <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="p-6">
-                        <div class="flex items-center">
-                            <svg
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                viewBox="0 0 24 24"
-                                class="w-8 h-8 text-gray-500"
-                            >
-                                <path
-                                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                                ></path>
-                            </svg>
-                            <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a
-                                    href="#"
-                                    class="underline text-gray-900 dark:text-white"
-                                >
-                                    Gestion des personnages
-                                </a>
-                            </div>
-                        </div>
+            <div class="flex justify-center gap-8 my-4">
+                <Link
+                    href="/login"
+                    class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gray-400 hover:bg-gray-700 text-white font-semibold shadow-md"
+                >
+                    Connexion
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+                        <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                </Link>
+                <Link
+                    href="/quick"
+                    class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-400 hover:bg-indigo-700 text-white font-semibold shadow-md"
+                >
+                    Consultation
+                </Link>
+            </div>
 
-                        <div class="ml-12">
-                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Cette application vous permettra d'avoir vos personnages de jeux de roles à portée de main, directement accessible
-                                sur votre smartphone, tablette ou ordinateur.
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
-                        <div class="flex items-center">
-                            <svg
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                viewBox="0 0 24 24"
-                                class="w-8 h-8 text-gray-500"
-                            >
-                                <path
-                                    d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
-                                ></path>
-                                <path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                            </svg>
-                            <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a
-                                    href="#"
-                                    class="underline text-gray-900 dark:text-white"
-                                >
-                                    Consultation simplifiée
-                                </a>
+            <!-- Feature grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+                <!-- Left column: description + CTA -->
+                <div class="md:col-span-2 bg-gray-800/60 backdrop-blur-md rounded-2xl p-6 border border-gray-700 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-start gap-2">
+                            <div class="p-3 rounded-lg bg-gray-600 text-gray-200">
+                                <!-- book icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 20h9" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 4H7a2 2 0 00-2 2v12" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 8h14v7H7V8z" />
+                                </svg>
                             </div>
-                        </div>
 
-                        <div class="ml-12">
-                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Consultation rapide des caracteristiques des personnages par le Maitre du Jeu (MJ).
+                            <div>
+                                <h2 class="text-xl font-semibold">Gestion des personnages pour les joueurs</h2>
+                                <p class="mt-2 text-gray-300 text-sm leading-relaxed">
+                                    Consulter rapidement ses personnages de jeu de rôle sur tablette ou smartphone.
+                                </p>
                             </div>
                         </div>
+                        <h2 class="my-4 text-xl font-bold text-gray-300 leading-relaxed">
+                            Attributs du personnage
+                        </h2>
+                        <img src="/img/screenshots/attributs.png" alt="attributs" class="mt-2 w-full rounded-md border border-gray-700 shadow-sm" />
+                        <img src="/img/screenshots/attributs2.png" alt="attributs" class="mt-2 w-full rounded-md border border-gray-700 shadow-sm" />
+
+                        <h2 class="my-4 text-xl font-bold text-gray-300 leading-relaxed">
+                            Jauges PV et PC
+                        </h2>
+                        <img src="/img/screenshots/jauges.png" alt="attributs" class="mt-2 w-full rounded-md border border-gray-700 shadow-sm" />
+
+                        <h2 class="my-4 text-xl font-bold text-gray-300 leading-relaxed">
+                            Affichage des capacités
+                        </h2>
+                        <img src="/img/screenshots/voies.png" alt="attributs" class="mt-2 w-full rounded-md border border-gray-700 shadow-sm" />
                     </div>
                 </div>
+
+                <!-- Right column: quick consult card -->
+                <aside class="bg-gradient-to-br from-gray-900/70 to-gray-800/60 rounded-2xl p-6 border border-gray-700 shadow-lg flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-start gap-3">
+                            <div class="p-3 rounded-lg bg-indigo-600/10 text-indigo-300">
+                                <!-- camera / quick view icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A2 2 0 0122 9.618V15a2 2 0 01-2 2H4a2 2 0 01-2-2V9.618a2 2 0 01.447-1.894L7 4l1.5 1.5L12 7l3.5-1.5L17 4l3.553 3.724A2 2 0 0122 9.618V15" />
+                                </svg>
+                            </div>
+
+                            <div>
+                                <h3 class="text-lg font-semibold">Consultation simplifiée pour le MJ</h3>
+                                <p class="mt-2 text-gray-300 text-sm leading-relaxed">
+                                    Accès rapide à tous les personnages d'une chronique
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </div>
-    </div>
+    </section>
 </template>
+

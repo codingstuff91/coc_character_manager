@@ -21,7 +21,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Forgot Password" />
+        <Head title="Mot de passe oublié" />
 
         <div class="mb-4 text-sm text-gray-600">
             Vous avez oublié votre mot de passe ? Pas de problemes, renseignez votre adresse mail et vous recevrez un lien de ré initialisation de votre mot de passe.

@@ -27,7 +27,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Reset Password" />
+        <Head title="Réinitialisation mot de passe" />
 
         <form @submit.prevent="submit">
             <div>

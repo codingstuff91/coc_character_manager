@@ -16,7 +16,7 @@ import { Link } from '@inertiajs/vue3'
             <div class="flex justify-center gap-8 my-4">
                 <Link
                     href="/login"
-                    class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gray-400 hover:bg-gray-700 text-white font-semibold shadow-md"
+                    class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gray-500 hover:bg-gray-700 text-white font-semibold shadow-md"
                 >
                     Connexion
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
@@ -24,8 +24,8 @@ import { Link } from '@inertiajs/vue3'
                     </svg>
                 </Link>
                 <Link
-                    href="/quick"
-                    class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-400 hover:bg-indigo-700 text-white font-semibold shadow-md"
+                    href="/characters"
+                    class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-indigo-500 hover:bg-indigo-700 text-white font-semibold shadow-md"
                 >
                     Consultation
                 </Link>
@@ -33,7 +33,7 @@ import { Link } from '@inertiajs/vue3'
 
 
             <!-- Feature grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                 <!-- Left column: description + CTA -->
                 <div class="md:col-span-2 bg-gray-800/60 backdrop-blur-md rounded-2xl p-6 border border-gray-700 shadow-lg flex flex-col justify-between">
                     <div>
@@ -55,43 +55,22 @@ import { Link } from '@inertiajs/vue3'
                             </div>
                         </div>
                         <h2 class="my-4 text-xl font-bold text-gray-300 leading-relaxed">
-                            Attributs du personnage
+                            Affichage des 6 attributs principaux du personnage
                         </h2>
                         <img src="/img/screenshots/attributs.png" alt="attributs" class="mt-2 w-full rounded-md border border-gray-700 shadow-sm" />
                         <img src="/img/screenshots/attributs2.png" alt="attributs" class="mt-2 w-full rounded-md border border-gray-700 shadow-sm" />
 
                         <h2 class="my-4 text-xl font-bold text-gray-300 leading-relaxed">
-                            Jauges PV et PC
+                            Gérer les PV et PC du personnages via des jauges interactives
                         </h2>
                         <img src="/img/screenshots/jauges.png" alt="attributs" class="mt-2 w-full rounded-md border border-gray-700 shadow-sm" />
 
                         <h2 class="my-4 text-xl font-bold text-gray-300 leading-relaxed">
-                            Affichage des capacités
+                            Affichage des capacités groupées par voie et triés par niveau
                         </h2>
                         <img src="/img/screenshots/voies.png" alt="attributs" class="mt-2 w-full rounded-md border border-gray-700 shadow-sm" />
                     </div>
                 </div>
-
-                <!-- Right column: quick consult card -->
-                <aside class="bg-gradient-to-br from-gray-900/70 to-gray-800/60 rounded-2xl p-6 border border-gray-700 shadow-lg flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-start gap-3">
-                            <div class="p-3 rounded-lg bg-indigo-600/10 text-indigo-300">
-                                <!-- camera / quick view icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A2 2 0 0122 9.618V15a2 2 0 01-2 2H4a2 2 0 01-2-2V9.618a2 2 0 01.447-1.894L7 4l1.5 1.5L12 7l3.5-1.5L17 4l3.553 3.724A2 2 0 0122 9.618V15" />
-                                </svg>
-                            </div>
-
-                            <div>
-                                <h3 class="text-lg font-semibold">Consultation simplifiée pour le MJ</h3>
-                                <p class="mt-2 text-gray-300 text-sm leading-relaxed">
-                                    Accès rapide à tous les personnages d'une chronique
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </aside>
             </div>
         </div>
     </section>
